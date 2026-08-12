@@ -1,0 +1,22 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" fill="#F2E6DF"/>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <circle cx="333" cy="280" r="160" fill="url(#glow)" opacity="0.9"/>
+  <circle cx="875" cy="642" r="228" fill="#C6A58E" opacity="0.24"/>
+  <path d="M327 674C327 576.798 405.798 498 503 498H670C767.202 498 846 576.798 846 674V752H327V674Z" fill="#D2B09C" opacity="0.68"/>
+  <path d="M432 402C432 348.98 474.98 306 528 306H648C701.02 306 744 348.98 744 402V492H432V402Z" fill="#B98778" opacity="0.82"/>
+  <path d="M542 220C542 180.235 574.235 148 614 148C653.765 148 686 180.235 686 220V306H542V220Z" fill="#8B4A56" opacity="0.88"/>
+  <path d="M267 752H935" stroke="#FFF6F0" stroke-opacity="0.7" stroke-width="3"/>
+  <text x="600" y="816" text-anchor="middle" fill="#FFF7F2" font-size="44" font-family="Georgia, serif" letter-spacing="12">IMAZ &amp; ZEBA</text>
+  <defs>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(333 280) rotate(90) scale(160)">
+      <stop stop-color="#FFF8F2"/>
+      <stop offset="1" stop-color="#FFF8F2" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bg" x1="187" y1="89" x2="1044" y2="851" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8EEE7"/>
+      <stop offset="0.5" stop-color="#E9D5CB"/>
+      <stop offset="1" stop-color="#D0A3A3"/>
+    </linearGradient>
+  </defs>
+</svg>

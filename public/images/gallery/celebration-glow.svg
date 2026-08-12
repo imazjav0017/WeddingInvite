@@ -1,0 +1,33 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" fill="#EADDCF"/>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <circle cx="394" cy="275" r="186" fill="url(#light1)" opacity="0.95"/>
+  <circle cx="828" cy="348" r="142" fill="url(#light2)" opacity="0.72"/>
+  <circle cx="660" cy="618" r="246" fill="#B78367" opacity="0.18"/>
+  <g opacity="0.82">
+    <circle cx="280" cy="532" r="6" fill="#FFF6EE"/>
+    <circle cx="338" cy="586" r="9" fill="#F5E0C8"/>
+    <circle cx="406" cy="548" r="7" fill="#FFF8F0"/>
+    <circle cx="752" cy="576" r="8" fill="#F9E8D0"/>
+    <circle cx="828" cy="534" r="6" fill="#FFF8F1"/>
+    <circle cx="888" cy="590" r="11" fill="#F4DAC0"/>
+    <circle cx="950" cy="540" r="7" fill="#FFF7F2"/>
+  </g>
+  <path d="M300 706C406 629.333 506.667 591 602 591C697.333 591 801.333 629.333 914 706" stroke="#FFF3E6" stroke-width="4" stroke-linecap="round" opacity="0.72"/>
+  <text x="600" y="794" text-anchor="middle" fill="#FFF8F3" font-size="42" font-family="Georgia, serif" letter-spacing="12">CELEBRATION GLOW</text>
+  <defs>
+    <radialGradient id="light1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(394 275) rotate(90) scale(186)">
+      <stop stop-color="#FFF8F0"/>
+      <stop offset="1" stop-color="#FFF8F0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="light2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(828 348) rotate(90) scale(142)">
+      <stop stop-color="#FFFAF4"/>
+      <stop offset="1" stop-color="#FFFAF4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bg" x1="154" y1="74" x2="1011" y2="833" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5ECE2"/>
+      <stop offset="0.46" stop-color="#E5CDB6"/>
+      <stop offset="1" stop-color="#A97E76"/>
+    </linearGradient>
+  </defs>
+</svg>

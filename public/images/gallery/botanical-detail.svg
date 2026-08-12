@@ -1,0 +1,19 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" fill="#E4E7DE"/>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <circle cx="950" cy="198" r="170" fill="#FBF6F0" opacity="0.5"/>
+  <path d="M252 802C301.333 649.333 381.4 514.6 492 398" stroke="#9A7A67" stroke-width="10" stroke-linecap="round" opacity="0.38"/>
+  <path d="M940 796C883.333 627.333 783.4 482.2 640 360.6" stroke="#7E8C78" stroke-width="10" stroke-linecap="round" opacity="0.35"/>
+  <path d="M490 404C454.667 392.667 426 384.333 404 379C422.667 405 443 428.667 465 450" stroke="#B37C86" stroke-width="8" stroke-linecap="round" opacity="0.56"/>
+  <path d="M643 364C678.333 349.333 706.333 336.333 727 325C713 354.333 694.333 381.667 671 407" stroke="#B79A77" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+  <path d="M522 504C480.667 489.333 448 478.667 424 472C441.333 499.333 462 525.333 486 550" stroke="#7C8F77" stroke-width="8" stroke-linecap="round" opacity="0.52"/>
+  <path d="M620 472C664 459.333 697.667 448.667 721 440C704.333 470.667 684.333 497 661 519" stroke="#9D6C73" stroke-width="8" stroke-linecap="round" opacity="0.52"/>
+  <text x="600" y="776" text-anchor="middle" fill="#FDF8F3" font-size="40" font-family="Georgia, serif" letter-spacing="10">BOTANICAL DETAIL</text>
+  <defs>
+    <linearGradient id="bg" x1="184" y1="105" x2="997" y2="818" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6EEE9"/>
+      <stop offset="0.45" stop-color="#D5DCCE"/>
+      <stop offset="1" stop-color="#A5B39A"/>
+    </linearGradient>
+  </defs>
+</svg>
