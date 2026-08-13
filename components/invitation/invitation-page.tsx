@@ -9,32 +9,87 @@ import { ProgramTimelineSection } from "@/components/invitation/sections/program
 import { ScratchDateSection } from "@/components/invitation/sections/scratch-date-section";
 import { TransportationSection } from "@/components/invitation/sections/transportation-section";
 import { VenueSection } from "@/components/invitation/sections/venue-section";
+import type { ReactNode } from "react";
 import type { InvitationVariant } from "@/lib/types/invitation";
 
 type InvitationPageProps = {
   invitation: InvitationVariant;
 };
 
+type AlternatingSection = {
+  key: string;
+  node: ReactNode;
+};
+
 export function InvitationPage({ invitation }: InvitationPageProps) {
+  const trailingSections: AlternatingSection[] = [];
+
+  if (invitation.sections.scratchReveal) {
+    trailingSections.push({
+      key: "scratch-reveal",
+      node: <ScratchDateSection invitation={invitation} />,
+    });
+  }
+
+  if (invitation.sections.gallery) {
+    trailingSections.push({
+      key: "gallery",
+      node: <GallerySection invitation={invitation} />,
+    });
+  }
+
+  trailingSections.push(
+    {
+      key: "countdown",
+      node: <CountdownSection invitation={invitation} />,
+    },
+    {
+      key: "program-timeline",
+      node: <ProgramTimelineSection invitation={invitation} />,
+    },
+    {
+      key: "venue",
+      node: <VenueSection invitation={invitation} />,
+    },
+    {
+      key: "dress-code",
+      node: <DressCodeSection invitation={invitation} />,
+    },
+    {
+      key: "pre-wedding-events",
+      node: <PreWeddingEventsSection invitation={invitation} />,
+    },
+    {
+      key: "transportation",
+      node: <TransportationSection invitation={invitation} />,
+    },
+  );
+
+  if (invitation.sections.closingMessage) {
+    trailingSections.push({
+      key: "closing",
+      node: <ClosingMessageSection invitation={invitation} />,
+    });
+  }
+
   return (
     <InvitationExperience invitation={invitation}>
-      <main className="page-spread mx-auto flex min-h-screen flex-col gap-4 px-0 py-3 sm:gap-5 sm:py-5">
+      <main className="page-spread mx-auto flex min-h-screen flex-col px-0 py-0">
         <div className="page-shell hidden h-6 sm:block" />
 
         <HeroSection invitation={invitation} />
-        {invitation.sections.scratchReveal ? (
-          <ScratchDateSection invitation={invitation} />
-        ) : null}
-        {invitation.sections.gallery ? <GallerySection invitation={invitation} /> : null}
-        <CountdownSection invitation={invitation} />
-        <ProgramTimelineSection invitation={invitation} />
-        <VenueSection invitation={invitation} />
-        <DressCodeSection invitation={invitation} />
-        <PreWeddingEventsSection invitation={invitation} />
-        <TransportationSection invitation={invitation} />
-        {invitation.sections.closingMessage ? (
-          <ClosingMessageSection invitation={invitation} />
-        ) : null}
+        {trailingSections.map((section, index) => (
+          <div
+            className={`relative left-1/2 right-1/2 w-screen -translate-x-1/2 ${
+              index % 2 === 0
+                ? "bg-[var(--section-light)]"
+                : "bg-[var(--section-blush)]"
+            }`}
+            key={section.key}
+          >
+            {section.node}
+          </div>
+        ))}
       </main>
     </InvitationExperience>
   );
