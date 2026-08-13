@@ -1,6 +1,7 @@
 "use client";
 
 import { CountdownClock } from "@/components/invitation/countdown-clock";
+import { DecorativeDivider } from "@/components/invitation/decorative-divider";
 import { FadeIn } from "@/components/motion/fade-in";
 import { motion, useReducedMotion } from "motion/react";
 import type { InvitationVariant } from "@/lib/types/invitation";
@@ -26,17 +27,12 @@ export function CountdownSection({ invitation }: CountdownSectionProps) {
         </motion.h3>
 
         <motion.div
-          className="my-6 flex items-center justify-center gap-3 text-[rgb(139,35,55)]"
           initial={prefersReducedMotion ? false : { opacity: 0, scaleX: 0.92 }}
           transition={{ duration: prefersReducedMotion ? 0.01 : 0.45, delay: 0.06 }}
           viewport={{ once: true }}
           whileInView={prefersReducedMotion ? undefined : { opacity: 1, scaleX: 1 }}
         >
-          <span className="h-px w-16 bg-current/30" />
-          <span aria-hidden="true" className="text-[10px] opacity-50">
-            ♥
-          </span>
-          <span className="h-px w-16 bg-current/30" />
+          <DecorativeDivider className="my-6 text-[rgb(139,35,55)]" />
         </motion.div>
 
         <div className="mt-8">

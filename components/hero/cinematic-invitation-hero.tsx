@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import { DecorativeHeartIcon } from "@/components/invitation/decorative-divider";
 import { cn } from "@/lib/utils/cn";
 import type { InvitationVariant } from "@/lib/types/invitation";
 
@@ -52,7 +53,10 @@ export function CinematicInvitationHero({
               ease: EASE,
             }}
           >
-            {"\u2665"}
+            <DecorativeHeartIcon
+              className="text-[rgb(245,230,224)]"
+              size={10}
+            />
           </motion.div>
 
           <motion.p
@@ -118,7 +122,10 @@ export function CinematicInvitationHero({
                 ease: EASE,
               }}
             >
-              {"\u2665"}
+              <DecorativeHeartIcon
+                className="text-[rgb(245,230,224)]"
+                size={10}
+              />
             </motion.span>
             <motion.span
               animate={

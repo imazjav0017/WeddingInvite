@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import { motion, useReducedMotion } from "motion/react";
+import { DecorativeDivider } from "@/components/invitation/decorative-divider";
 import { cn } from "@/lib/utils/cn";
 
 type ScratchRevealRenderState = {
@@ -395,15 +396,12 @@ export function ScratchReveal({
         </motion.h3>
 
         <motion.div
-          className="my-6 flex items-center justify-center gap-3 text-[rgb(201,138,152)]"
           initial={reducedMotionEnabled ? false : { opacity: 0, scaleX: 0.9 }}
           transition={{ duration: reducedMotionEnabled ? 0.01 : 0.45, delay: 0.08 }}
           viewport={{ once: true }}
           whileInView={reducedMotionEnabled ? undefined : { opacity: 1, scaleX: 1 }}
         >
-          <span className="h-px w-16 bg-current/30" />
-          <span className="text-[10px] opacity-50">{"\u2665"}</span>
-          <span className="h-px w-16 bg-current/30" />
+          <DecorativeDivider className="my-6 text-[rgb(201,138,152)]" />
         </motion.div>
 
         <motion.div

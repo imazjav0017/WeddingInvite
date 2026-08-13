@@ -1,3 +1,4 @@
+import { DecorativeDivider } from "@/components/invitation/decorative-divider";
 import type { InvitationVariant } from "@/lib/types/invitation";
 import { FadeIn } from "@/components/motion/fade-in";
 
@@ -15,25 +16,23 @@ export function HeroSection({ invitation }: HeroSectionProps) {
       <div className="absolute inset-0 bg-[linear-gradient(rgb(40,46,57)_0%,rgb(40,46,57)_18%,rgb(142,137,144)_55%,rgb(245,229,232)_100%)]" />
 
       <div className="relative mx-auto max-w-2xl text-center">
-        <div className="mb-8 flex items-center justify-center gap-3">
-          <span className="h-px w-20 bg-[linear-gradient(to_right,transparent,rgb(201,138,152))]" />
-          <span className="text-[14px] leading-none text-[rgb(201,138,152)]">
-            {"\u2665"}
-          </span>
-          <span className="h-px w-20 bg-[linear-gradient(to_left,transparent,rgb(201,138,152))]" />
-        </div>
+        <DecorativeDivider
+          className="mb-8 text-[rgb(201,138,152)]"
+          heartSize={14}
+          leftLineClassName="w-20 bg-[linear-gradient(to_right,transparent,rgb(201,138,152))]"
+          rightLineClassName="w-20 bg-[linear-gradient(to_left,transparent,rgb(201,138,152))]"
+        />
 
         <p className="whitespace-pre-wrap break-words font-[var(--font-script)] text-2xl leading-relaxed italic text-[rgb(251,230,234)] drop-shadow-[0_2px_14px_rgba(0,0,0,0.55)] md:text-3xl">
           {invitation.content.invitationMessage}
         </p>
 
-        <div className="mt-8 flex items-center justify-center gap-3">
-          <span className="h-px w-20 bg-[linear-gradient(to_right,transparent,rgb(201,138,152))]" />
-          <span className="text-[14px] leading-none text-[rgb(201,138,152)]">
-            {"\u2665"}
-          </span>
-          <span className="h-px w-20 bg-[linear-gradient(to_left,transparent,rgb(201,138,152))]" />
-        </div>
+        <DecorativeDivider
+          className="mt-8 text-[rgb(201,138,152)]"
+          heartSize={14}
+          leftLineClassName="w-20 bg-[linear-gradient(to_right,transparent,rgb(201,138,152))]"
+          rightLineClassName="w-20 bg-[linear-gradient(to_left,transparent,rgb(201,138,152))]"
+        />
       </div>
     </FadeIn>
   );
