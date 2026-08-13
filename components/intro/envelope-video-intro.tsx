@@ -22,7 +22,7 @@ type EnvelopeVideoIntroProps = {
   onComplete?: () => void;
 };
 
-const VIDEO_SOURCE = "/video/royal-prestige.mp4";
+const VIDEO_SOURCE = "/video/royal-prestige.mp4?v=3";
 const OPEN_WAIT_TIME = 0.1;
 const HERO_TEXT_START_TIME = 5.1;
 const HERO_HOLD_OFFSET = 0.05;
