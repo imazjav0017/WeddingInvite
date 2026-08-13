@@ -22,7 +22,7 @@ type EnvelopeVideoIntroProps = {
 };
 
 const VIDEO_SOURCE = "/video/royal-prestige.mp4";
-const OPEN_WAIT_TIME = 2.8;
+const OPEN_WAIT_TIME = 0.1;
 const HERO_TEXT_START_TIME = 5.1;
 const HERO_HOLD_OFFSET = 0.05;
 
@@ -96,15 +96,27 @@ export function EnvelopeVideoIntro({
     };
 
     const handleCanPlay = () => {
-      if (phaseRef.current !== "waiting" || hasPreparedWaitingFrameRef.current) {
-        setIsVideoReady(true);
+      if (
+        phaseRef.current === "waiting" &&
+        !prefersReducedMotion &&
+        !hasPreparedWaitingFrameRef.current
+      ) {
+        prepareWaitingFrame();
       }
+
+      setIsVideoReady(true);
     };
 
     const handleLoadedData = () => {
-      if (phaseRef.current !== "waiting" || hasPreparedWaitingFrameRef.current) {
-        setIsVideoReady(true);
+      if (
+        phaseRef.current === "waiting" &&
+        !prefersReducedMotion &&
+        !hasPreparedWaitingFrameRef.current
+      ) {
+        prepareWaitingFrame();
       }
+
+      setIsVideoReady(true);
     };
 
     const handleLoadedMetadata = () => {
