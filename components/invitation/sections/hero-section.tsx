@@ -1,4 +1,7 @@
-import { DecorativeDivider } from "@/components/invitation/decorative-divider";
+import {
+  DecorativeDivider,
+  DecorativeHeartIcon,
+} from "@/components/invitation/decorative-divider";
 import type { InvitationVariant } from "@/lib/types/invitation";
 import { FadeIn } from "@/components/motion/fade-in";
 
@@ -7,6 +10,15 @@ type HeroSectionProps = {
 };
 
 export function HeroSection({ invitation }: HeroSectionProps) {
+  const trailingHeartPattern = /\s*(?:♥|❤|❤️)\s*$/u;
+  const hasTrailingHeart = trailingHeartPattern.test(
+    invitation.content.invitationMessage,
+  );
+  const invitationMessage = invitation.content.invitationMessage.replace(
+    trailingHeartPattern,
+    "",
+  );
+
   return (
     <FadeIn
       className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 overflow-hidden px-6 py-24 md:py-32"
@@ -24,7 +36,18 @@ export function HeroSection({ invitation }: HeroSectionProps) {
         />
 
         <p className="whitespace-pre-wrap break-words font-[var(--font-script)] text-2xl leading-relaxed italic text-[rgb(251,230,234)] drop-shadow-[0_2px_14px_rgba(0,0,0,0.55)] md:text-3xl">
-          {invitation.content.invitationMessage}
+          {invitationMessage}
+          {hasTrailingHeart ? (
+            <>
+              {" "}
+              <span className="inline-flex translate-y-[-0.02em] align-middle">
+                <DecorativeHeartIcon
+                  className="text-[rgb(251,230,234)] opacity-90"
+                  size={14}
+                />
+              </span>
+            </>
+          ) : null}
         </p>
 
         <DecorativeDivider
