@@ -9,7 +9,6 @@ import {
   type KeyboardEvent,
 } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import Image from "next/image";
 import { CinematicInvitationHero } from "@/components/hero/cinematic-invitation-hero";
 import { getInvitationVariant } from "@/lib/config/invitations";
 import type { InvitationVariant } from "@/lib/types/invitation";
@@ -23,7 +22,7 @@ type EnvelopeVideoIntroProps = {
 };
 
 const VIDEO_SOURCE = "/video/royal-prestige.mp4?v=3";
-const OPEN_WAIT_TIME = 0.1;
+const ENVELOPE_FRAME_SOURCE = "/images/intro/envelope-frame.png";
 const HERO_TEXT_START_TIME = 5.1;
 const HERO_HOLD_OFFSET = 0.05;
 
@@ -39,8 +38,6 @@ export function EnvelopeVideoIntro({
   const prefersReducedMotion = useReducedMotion();
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const isStartingPlaybackRef = useRef(false);
-  const hasReachedWaitingFrameRef = useRef(false);
-  const hasPreparedWaitingFrameRef = useRef(false);
   const hasHeroVisibleCallbackRunRef = useRef(false);
   const phaseRef = useRef<IntroPhase>("waiting");
   const invitation = useMemo<InvitationVariant | undefined>(
@@ -57,7 +54,7 @@ export function EnvelopeVideoIntro({
   }, [onComplete, onHeroVisible]);
   const [hasInteracted, setHasInteracted] = useState(false);
   const [phase, setPhase] = useState<IntroPhase>("waiting");
-  const [waitingFrameDataUrl, setWaitingFrameDataUrl] = useState<string | null>(null);
+  const [isVideoVisible, setIsVideoVisible] = useState(false);
 
   useEffect(() => {
     phaseRef.current = phase;
@@ -72,83 +69,11 @@ export function EnvelopeVideoIntro({
 
     video.muted = true;
     video.pause();
+    setIsVideoVisible(false);
 
-    const captureWaitingFrame = () => {
-      if (video.videoWidth <= 0 || video.videoHeight <= 0) {
-        return;
-      }
-
-      try {
-        const canvas = document.createElement("canvas");
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-
-        const context = canvas.getContext("2d");
-
-        if (!context) {
-          return;
-        }
-
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        setWaitingFrameDataUrl(canvas.toDataURL("image/jpeg", 0.92));
-      } catch {
-        // Some mobile browsers can be picky about frame extraction timing. In that
-        // case we still fall back to the paused video element itself.
-      }
-    };
-
-    const prepareWaitingFrame = () => {
-      if (
-        prefersReducedMotion ||
-        hasPreparedWaitingFrameRef.current ||
-        phaseRef.current !== "waiting"
-      ) {
-        return;
-      }
-
-      hasPreparedWaitingFrameRef.current = true;
-
-      try {
-        video.pause();
-        video.currentTime = Math.min(OPEN_WAIT_TIME, Math.max(0, video.duration || OPEN_WAIT_TIME));
-      } catch {}
-    };
-
-    const handleCanPlay = () => {
-      if (
-        phaseRef.current === "waiting" &&
-        !prefersReducedMotion &&
-        !hasPreparedWaitingFrameRef.current
-      ) {
-        prepareWaitingFrame();
-      }
-
-    };
-
-    const handleLoadedData = () => {
-      if (
-        phaseRef.current === "waiting" &&
-        !prefersReducedMotion &&
-        !hasPreparedWaitingFrameRef.current
-      ) {
-        prepareWaitingFrame();
-      }
-
-    };
-
-    const handleLoadedMetadata = () => {
-      if (prefersReducedMotion) {
-        return;
-      }
-
-      prepareWaitingFrame();
-    };
-
-    const handleSeeked = () => {
-      if (phaseRef.current === "waiting") {
-        hasReachedWaitingFrameRef.current = true;
-        video.pause();
-        captureWaitingFrame();
+    const revealVideo = () => {
+      if (phaseRef.current !== "waiting") {
+        setIsVideoVisible(true);
       }
     };
 
@@ -176,6 +101,14 @@ export function EnvelopeVideoIntro({
       }
     };
 
+    const handleLoadedData = () => {
+      revealVideo();
+    };
+
+    const handlePlaying = () => {
+      revealVideo();
+    };
+
     const handleEnded = () => {
       if (phaseRef.current === "heroPlaying") {
         if (video.duration) {
@@ -187,22 +120,18 @@ export function EnvelopeVideoIntro({
       }
     };
 
-    video.addEventListener("canplay", handleCanPlay);
     video.addEventListener("loadeddata", handleLoadedData);
-    video.addEventListener("loadedmetadata", handleLoadedMetadata);
-    video.addEventListener("seeked", handleSeeked);
+    video.addEventListener("playing", handlePlaying);
     video.addEventListener("timeupdate", handleTimeUpdate);
     video.addEventListener("ended", handleEnded);
 
     return () => {
-      video.removeEventListener("canplay", handleCanPlay);
       video.removeEventListener("loadeddata", handleLoadedData);
-      video.removeEventListener("loadedmetadata", handleLoadedMetadata);
-      video.removeEventListener("seeked", handleSeeked);
+      video.removeEventListener("playing", handlePlaying);
       video.removeEventListener("timeupdate", handleTimeUpdate);
       video.removeEventListener("ended", handleEnded);
     };
-  }, [prefersReducedMotion]);
+  }, []);
 
   useEffect(() => {
     if (
@@ -227,7 +156,6 @@ export function EnvelopeVideoIntro({
     }
 
     isStartingPlaybackRef.current = true;
-    hasReachedWaitingFrameRef.current = true;
 
     if (prefersReducedMotion) {
       if (!hasInteracted) {
@@ -315,8 +243,19 @@ export function EnvelopeVideoIntro({
           role={phase === "waiting" ? "button" : undefined}
           tabIndex={phase === "waiting" ? 0 : -1}
         >
+          <motion.img
+            alt=""
+            animate={{ opacity: isVideoVisible ? 0 : 1 }}
+            aria-hidden="true"
+            className="absolute inset-0 z-[2] h-full w-full object-cover"
+            draggable={false}
+            initial={false}
+            src={ENVELOPE_FRAME_SOURCE}
+            transition={{ duration: prefersReducedMotion ? 0.01 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+          />
+
           <video
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 z-[1] h-full w-full object-cover"
             controls={false}
             controlsList="nofullscreen nodownload noplaybackrate noremoteplayback"
             disablePictureInPicture
@@ -325,19 +264,8 @@ export function EnvelopeVideoIntro({
             preload="auto"
             ref={videoRef}
             src={VIDEO_SOURCE}
+            style={{ opacity: isVideoVisible ? 1 : 0 }}
           />
-
-          {phase === "waiting" && waitingFrameDataUrl ? (
-            <Image
-              alt=""
-              aria-hidden="true"
-              className="absolute inset-0 z-[1] h-full w-full object-cover"
-              fill
-              priority
-              src={waitingFrameDataUrl}
-              unoptimized
-            />
-          ) : null}
 
           <AnimatePresence>
             {phase === "waiting" ? (
