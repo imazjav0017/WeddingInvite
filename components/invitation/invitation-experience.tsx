@@ -34,7 +34,7 @@ type InvitationExperienceProps = {
   children: ReactNode;
 };
 
-const AUDIO_SOURCE = "/audio/invitation-theme.wav";
+const AUDIO_SOURCE = "/audio/track3.mp3";
 
 export function InvitationExperience({
   invitation,
