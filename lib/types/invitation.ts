@@ -38,6 +38,7 @@ export interface ContactDetails {
 export interface SharedWeddingData {
   couple: CoupleDetails;
   contact: ContactDetails;
+  venue: VenueDetails;
   events: Record<EventId, InvitationEvent>;
   gallery: GalleryImage[];
   dressCode: DressCodeDetails;
@@ -96,6 +97,7 @@ export interface InvitationVariant extends Omit<InvitationVariantBase, "sections
   sections: InvitationSectionFlags;
   couple: CoupleDetails;
   contact: ContactDetails;
+  venue: VenueDetails;
   eventMap: Record<EventId, InvitationEvent>;
   gallery: GalleryImage[];
   dressCode: DressCodeDetails;

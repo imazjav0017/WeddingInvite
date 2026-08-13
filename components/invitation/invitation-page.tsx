@@ -9,6 +9,7 @@ import { HeroSection } from "@/components/invitation/sections/hero-section";
 import { ProgramTimelineSection } from "@/components/invitation/sections/program-timeline-section";
 import { RsvpSection } from "@/components/invitation/sections/rsvp-section";
 import { ScratchDateSection } from "@/components/invitation/sections/scratch-date-section";
+import { VenueSection } from "@/components/invitation/sections/venue-section";
 import type { InvitationVariant } from "@/lib/types/invitation";
 
 type InvitationPageProps = {
@@ -28,6 +29,7 @@ export function InvitationPage({ invitation }: InvitationPageProps) {
         {invitation.sections.gallery ? <GallerySection invitation={invitation} /> : null}
         <CountdownSection invitation={invitation} />
         <ProgramTimelineSection invitation={invitation} />
+        <VenueSection invitation={invitation} />
         <CoupleIntroSection invitation={invitation} />
 
         {invitation.events.map((eventId, index) => {

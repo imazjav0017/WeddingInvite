@@ -11,6 +11,11 @@ export const sharedWeddingData: SharedWeddingData = {
     contactLabel: "RSVP Contact",
     contactValue: "+44 0000 000000",
   },
+  venue: {
+    name: "Wedding Lands",
+    address: "Turbhe, Navi Mumbai",
+    mapLink: "https://maps.app.goo.gl/Rsikti7bZvozHFmQA",
+  },
   events: {
     nikah: {
       id: "nikah",

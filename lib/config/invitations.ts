@@ -22,6 +22,7 @@ const baseVariant = (
   ...config,
   couple: sharedWeddingData.couple,
   contact: sharedWeddingData.contact,
+  venue: sharedWeddingData.venue,
   eventMap: sharedWeddingData.events,
   gallery: sharedWeddingData.gallery,
   dressCode: sharedWeddingData.dressCode,
