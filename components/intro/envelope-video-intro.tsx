@@ -39,6 +39,7 @@ export function EnvelopeVideoIntro({
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const isStartingPlaybackRef = useRef(false);
   const hasReachedWaitingFrameRef = useRef(false);
+  const hasPreparedWaitingFrameRef = useRef(false);
   const hasHeroVisibleCallbackRunRef = useRef(false);
   const phaseRef = useRef<IntroPhase>("waiting");
   const invitation = useMemo<InvitationVariant | undefined>(
@@ -75,42 +76,56 @@ export function EnvelopeVideoIntro({
       setIsVideoReady(true);
     }
 
+    const prepareWaitingFrame = () => {
+      if (
+        prefersReducedMotion ||
+        hasPreparedWaitingFrameRef.current ||
+        phaseRef.current !== "waiting"
+      ) {
+        return;
+      }
+
+      hasPreparedWaitingFrameRef.current = true;
+
+      try {
+        video.pause();
+        video.currentTime = Math.min(OPEN_WAIT_TIME, Math.max(0, video.duration || OPEN_WAIT_TIME));
+      } catch {
+        setIsVideoReady(true);
+      }
+    };
+
     const handleCanPlay = () => {
-      setIsVideoReady(true);
+      if (phaseRef.current !== "waiting" || hasPreparedWaitingFrameRef.current) {
+        setIsVideoReady(true);
+      }
     };
 
     const handleLoadedData = () => {
+      if (phaseRef.current !== "waiting" || hasPreparedWaitingFrameRef.current) {
+        setIsVideoReady(true);
+      }
+    };
+
+    const handleLoadedMetadata = () => {
+      if (prefersReducedMotion) {
+        setIsVideoReady(true);
+        return;
+      }
+
+      prepareWaitingFrame();
+    };
+
+    const handleSeeked = () => {
+      if (phaseRef.current === "waiting") {
+        hasReachedWaitingFrameRef.current = true;
+        video.pause();
+      }
+
       setIsVideoReady(true);
     };
 
-    const handleLoadedMetadata = async () => {
-      if (prefersReducedMotion) {
-        return;
-      }
-
-      if (hasReachedWaitingFrameRef.current || phaseRef.current !== "waiting") {
-        return;
-      }
-
-      try {
-        await video.play();
-      } catch {
-        // If autoplay to the waiting frame is blocked, the user tap will still resume playback.
-      }
-    };
-
     const handleTimeUpdate = () => {
-      if (
-        phaseRef.current === "waiting" &&
-        !hasReachedWaitingFrameRef.current &&
-        video.currentTime >= OPEN_WAIT_TIME
-      ) {
-        hasReachedWaitingFrameRef.current = true;
-        video.pause();
-        video.currentTime = OPEN_WAIT_TIME;
-        return;
-      }
-
       if (
         phaseRef.current === "opening" &&
         video.currentTime >= HERO_TEXT_START_TIME
@@ -148,6 +163,7 @@ export function EnvelopeVideoIntro({
     video.addEventListener("canplay", handleCanPlay);
     video.addEventListener("loadeddata", handleLoadedData);
     video.addEventListener("loadedmetadata", handleLoadedMetadata);
+    video.addEventListener("seeked", handleSeeked);
     video.addEventListener("timeupdate", handleTimeUpdate);
     video.addEventListener("ended", handleEnded);
 
@@ -155,6 +171,7 @@ export function EnvelopeVideoIntro({
       video.removeEventListener("canplay", handleCanPlay);
       video.removeEventListener("loadeddata", handleLoadedData);
       video.removeEventListener("loadedmetadata", handleLoadedMetadata);
+      video.removeEventListener("seeked", handleSeeked);
       video.removeEventListener("timeupdate", handleTimeUpdate);
       video.removeEventListener("ended", handleEnded);
     };
