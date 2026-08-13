@@ -90,6 +90,7 @@ export interface InvitationVariantBase {
   seoDescription: string;
   events: EventId[];
   preWeddingEvents: PreWeddingEvent[];
+  valimaInvitation: ValimaInvitationDetails;
   wordingVariant: WordingVariant;
   timeline: TimelineItem[];
   sections?: Partial<InvitationSectionFlags>;
@@ -104,6 +105,7 @@ export interface InvitationVariant extends Omit<InvitationVariantBase, "sections
   transportation: TransportationDetails;
   eventMap: Record<EventId, InvitationEvent>;
   preWeddingEvents: PreWeddingEvent[];
+  valimaInvitation: ValimaInvitationDetails;
   gallery: GalleryImage[];
   dressCode: DressCodeDetails;
   guestNotes: GuestNote[];
@@ -123,6 +125,19 @@ export interface TransportationDetails {
   enabled: boolean;
   title: string;
   message: string;
+}
+
+export interface ValimaInvitationDetails {
+  enabled: boolean;
+  title: string;
+  invitationLine: string;
+  date: string;
+  day: string;
+  time: string;
+  timeLabel: string;
+  mapLink: string;
+  venue: string;
+  location: string;
 }
 
 export interface GalleryImage {

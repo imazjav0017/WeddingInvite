@@ -185,10 +185,11 @@ export function VenueSection({ invitation }: VenueSectionProps) {
         </motion.div>
 
         <motion.a
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-md bg-[rgb(139,35,55)] px-4 py-2 text-sm font-medium text-[rgb(251,240,241)] transition-opacity hover:opacity-90"
+          className="inline-flex h-10 items-center justify-center gap-2 rounded-md bg-[rgb(139,35,55)] px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
           href={venue.mapLink}
           initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
           rel="noopener noreferrer"
+          style={{ color: "#ffffff" }}
           target="_blank"
           transition={{ duration: prefersReducedMotion ? 0.01 : 0.45, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}

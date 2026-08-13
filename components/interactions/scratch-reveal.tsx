@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  useMemo,
   useCallback,
   useEffect,
   useRef,
@@ -8,12 +9,29 @@ import {
   type PointerEvent as ReactPointerEvent,
   type ReactNode,
 } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { DecorativeDivider } from "@/components/invitation/decorative-divider";
 import { cn } from "@/lib/utils/cn";
 
 type ScratchRevealRenderState = {
   isComplete: boolean;
+};
+
+type CelebrationParticle = {
+  id: number;
+  x: number;
+  y: number;
+  finalY: number;
+  drift: number;
+  rotation: number;
+  spin: number;
+  delay: number;
+  duration: number;
+  size: number;
+  height: number;
+  shape: "circle" | "strip";
+  color: string;
+  opacity: number;
 };
 
 type ScratchRevealProps = {
@@ -33,6 +51,34 @@ const HEART_MASK_URL = `url("data:image/svg+xml,${encodeURIComponent(
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="white" d="${HEART_PATH_STRING}"/></svg>`,
 )}")`;
 const HEART_CLIP_ID = "royal-heart-clip";
+const CELEBRATION_COLORS = ["#A92E4A", "#C45A73", "#D98B9C", "#E9B7C2"];
+
+function createCelebrationParticles() {
+  const totalParticles = 38;
+
+  return Array.from({ length: totalParticles }, (_, index) => {
+    const isStrip = index % 4 === 0;
+    const size = isStrip ? Math.random() * 2 + 2 : Math.random() * 4 + 4;
+    const height = isStrip ? Math.random() * 10 + 10 : size;
+
+    return {
+      id: index,
+      x: 18 + Math.random() * 64,
+      y: -20 - Math.random() * 40,
+      finalY: 360 + Math.random() * 40,
+      drift: Math.random() * 48 - 24,
+      rotation: Math.random() * 40 - 20,
+      spin: Math.random() * 180 - 90,
+      delay: Math.random() * 0.22,
+      duration: 3.1 + Math.random() * 1.6,
+      size,
+      height,
+      shape: isStrip ? "strip" : "circle",
+      color: CELEBRATION_COLORS[index % CELEBRATION_COLORS.length],
+      opacity: 0.55 + Math.random() * 0.35,
+    } satisfies CelebrationParticle;
+  });
+}
 
 function getHeartPathString() {
   return HEART_PATH_STRING;
@@ -151,6 +197,8 @@ export function ScratchReveal({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [isComplete, setIsComplete] = useState(reducedMotionEnabled);
   const [isCanvasAvailable, setIsCanvasAvailable] = useState(true);
+  const [showCanvas, setShowCanvas] = useState(!reducedMotionEnabled);
+  const [showCelebration, setShowCelebration] = useState(false);
   const [, setProgress] = useState(0);
   const isPointerDownRef = useRef(false);
   const lastPointRef = useRef<{ x: number; y: number } | null>(null);
@@ -158,6 +206,49 @@ export function ScratchReveal({
   const validCellsRef = useRef<number[]>([]);
   const pendingProgressFrameRef = useRef<number | null>(null);
   const progressValueRef = useRef(0);
+  const hasPlayedCelebrationRef = useRef(reducedMotionEnabled);
+  const celebrationTimeoutRef = useRef<number | null>(null);
+  const canvasFadeTimeoutRef = useRef<number | null>(null);
+  const celebrationParticles = useMemo(() => createCelebrationParticles(), []);
+
+  const completeReveal = useCallback(() => {
+    if (isComplete) {
+      return;
+    }
+
+    setIsComplete(true);
+    isPointerDownRef.current = false;
+    lastPointRef.current = null;
+
+    if (reducedMotionEnabled) {
+      setShowCanvas(false);
+      hasPlayedCelebrationRef.current = true;
+      return;
+    }
+
+    if (canvasFadeTimeoutRef.current !== null) {
+      window.clearTimeout(canvasFadeTimeoutRef.current);
+    }
+
+    canvasFadeTimeoutRef.current = window.setTimeout(() => {
+      setShowCanvas(false);
+      canvasFadeTimeoutRef.current = null;
+    }, 520);
+
+    if (!hasPlayedCelebrationRef.current) {
+      hasPlayedCelebrationRef.current = true;
+      setShowCelebration(true);
+
+      if (celebrationTimeoutRef.current !== null) {
+        window.clearTimeout(celebrationTimeoutRef.current);
+      }
+
+      celebrationTimeoutRef.current = window.setTimeout(() => {
+        setShowCelebration(false);
+        celebrationTimeoutRef.current = null;
+      }, 2600);
+    }
+  }, [isComplete, reducedMotionEnabled]);
 
   const scheduleProgressUpdate = useCallback(
     (nextProgress: number) => {
@@ -172,12 +263,11 @@ export function ScratchReveal({
         setProgress(progressValueRef.current);
 
         if (progressValueRef.current >= finishThreshold) {
-          setIsComplete(true);
-          isPointerDownRef.current = false;
+          completeReveal();
         }
       });
     },
-    [finishThreshold],
+    [completeReveal, finishThreshold],
   );
 
   const buildCanvas = useCallback(() => {
@@ -248,6 +338,14 @@ export function ScratchReveal({
 
       if (pendingProgressFrameRef.current !== null) {
         window.cancelAnimationFrame(pendingProgressFrameRef.current);
+      }
+
+      if (canvasFadeTimeoutRef.current !== null) {
+        window.clearTimeout(canvasFadeTimeoutRef.current);
+      }
+
+      if (celebrationTimeoutRef.current !== null) {
+        window.clearTimeout(celebrationTimeoutRef.current);
       }
     };
   }, [buildCanvas, isComplete, reducedMotionEnabled]);
@@ -376,7 +474,7 @@ export function ScratchReveal({
   };
 
   const revealWithoutCanvas = () => {
-    setIsComplete(true);
+    completeReveal();
   };
 
   const resolvedChildren =
@@ -385,15 +483,31 @@ export function ScratchReveal({
   return (
     <div className={cn("relative", className)}>
       <div className="flex flex-col items-center">
-        <motion.h3
-          className="mb-3 font-[var(--font-script)] text-4xl leading-none text-[rgb(139,35,55)] md:text-5xl"
-          initial={reducedMotionEnabled ? false : { opacity: 0, y: 16 }}
-          transition={{ duration: reducedMotionEnabled ? 0.01 : 0.55, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
-          whileInView={reducedMotionEnabled ? undefined : { opacity: 1, y: 0 }}
-        >
-          Scratch to Reveal
-        </motion.h3>
+        <div className="relative mb-3 min-h-[3.25rem]">
+          <AnimatePresence initial={false} mode="wait">
+            <motion.h3
+              animate={reducedMotionEnabled ? { opacity: 1 } : { opacity: 1, y: 0 }}
+              className="font-[var(--font-script)] text-4xl leading-none text-[rgb(139,35,55)] md:text-5xl"
+              exit={reducedMotionEnabled ? { opacity: 0 } : { opacity: 0, y: -10 }}
+              initial={
+                reducedMotionEnabled
+                  ? { opacity: 0 }
+                  : isComplete
+                    ? { opacity: 0, y: 10 }
+                    : { opacity: 0, y: 16 }
+              }
+              key={isComplete ? "complete-heading" : "scratch-heading"}
+              transition={{
+                duration: reducedMotionEnabled ? 0.12 : 0.38,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              viewport={{ once: true }}
+              whileInView={reducedMotionEnabled ? undefined : { opacity: 1, y: 0 }}
+            >
+              {isComplete ? "Our forever begins" : "Scratch to Reveal"}
+            </motion.h3>
+          </AnimatePresence>
+        </div>
 
         <motion.div
           initial={reducedMotionEnabled ? false : { opacity: 0, scaleX: 0.9 }}
@@ -405,12 +519,50 @@ export function ScratchReveal({
         </motion.div>
 
         <motion.div
-          className="mt-1"
+          className="relative mt-1"
           initial={reducedMotionEnabled ? false : { opacity: 0, y: 22, scale: 0.97 }}
           transition={{ duration: reducedMotionEnabled ? 0.01 : 0.65, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
           whileInView={reducedMotionEnabled ? undefined : { opacity: 1, y: 0, scale: 1 }}
         >
+          <AnimatePresence>
+            {showCelebration ? (
+              <div className="pointer-events-none fixed inset-x-0 top-0 z-40 h-[100svh] overflow-hidden">
+                {celebrationParticles.map((particle) => (
+                  <motion.div
+                    animate={{
+                      opacity: [0, particle.opacity, particle.opacity, 0],
+                      rotate: particle.rotation + particle.spin,
+                      x: particle.drift,
+                      y: particle.finalY,
+                    }}
+                    className="absolute"
+                    initial={{
+                      opacity: 0,
+                      rotate: particle.rotation,
+                      x: 0,
+                      y: particle.y,
+                    }}
+                    key={particle.id}
+                    style={{
+                      backgroundColor: particle.color,
+                      borderRadius: particle.shape === "circle" ? "999px" : "999px",
+                      height: `${particle.height}px`,
+                      left: `${particle.x}%`,
+                      top: 0,
+                      width: `${particle.size}px`,
+                    }}
+                    transition={{
+                      delay: particle.delay,
+                      duration: particle.duration,
+                      ease: "easeOut",
+                    }}
+                  />
+                ))}
+              </div>
+            ) : null}
+          </AnimatePresence>
+
           <div
             className="relative mx-auto h-[240px] w-[260px]"
           >
@@ -485,23 +637,21 @@ export function ScratchReveal({
                 {resolvedChildren}
               </div>
 
-              {!reducedMotionEnabled && isCanvasAvailable && !isComplete ? (
+              {!reducedMotionEnabled && isCanvasAvailable && showCanvas ? (
                 <motion.div
-                  animate={{ opacity: 1 }}
+                  animate={isComplete ? { opacity: 0 } : { opacity: 1 }}
                   className="absolute inset-0"
                   initial={{ opacity: 1 }}
-                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <motion.canvas
-                    animate={isComplete ? { opacity: 0 } : { opacity: 1 }}
+                  <canvas
                     className={cn("absolute inset-0 z-10 h-full w-full cursor-pointer touch-none", canvasClassName)}
                     onPointerCancel={handlePointerUp}
                     onPointerDown={handlePointerDown}
                     onPointerMove={handlePointerMove}
                     onPointerUp={handlePointerUp}
                     ref={canvasRef}
-                    style={{ touchAction: "none" }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ pointerEvents: isComplete ? "none" : "auto", touchAction: "none" }}
                   />
                 </motion.div>
               ) : null}
@@ -545,7 +695,7 @@ export function ScratchReveal({
           </div>
         </motion.div>
 
-        {!isCanvasAvailable ? (
+        {!isCanvasAvailable && !isComplete ? (
           <button
             className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-[rgba(196,141,155,0.45)] bg-white/70 px-5 py-2 text-[11px] font-medium uppercase tracking-[0.26em] text-[#8e5e69]"
             onClick={revealWithoutCanvas}

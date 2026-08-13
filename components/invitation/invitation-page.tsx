@@ -8,6 +8,7 @@ import { PreWeddingEventsSection } from "@/components/invitation/sections/pre-we
 import { ProgramTimelineSection } from "@/components/invitation/sections/program-timeline-section";
 import { ScratchDateSection } from "@/components/invitation/sections/scratch-date-section";
 import { TransportationSection } from "@/components/invitation/sections/transportation-section";
+import { ValimaInvitationSection } from "@/components/invitation/sections/valima-invitation-section";
 import { VenueSection } from "@/components/invitation/sections/venue-section";
 import type { ReactNode } from "react";
 import type { InvitationVariant } from "@/lib/types/invitation";
@@ -64,6 +65,13 @@ export function InvitationPage({ invitation }: InvitationPageProps) {
       node: <TransportationSection invitation={invitation} />,
     },
   );
+
+  if (invitation.valimaInvitation.enabled) {
+    trailingSections.push({
+      key: "valima-invitation",
+      node: <ValimaInvitationSection invitation={invitation} />,
+    });
+  }
 
   if (invitation.sections.closingMessage) {
     trailingSections.push({
