@@ -39,34 +39,52 @@ export function InvitationPage({ invitation }: InvitationPageProps) {
     });
   }
 
-  trailingSections.push(
-    {
+  if (invitation.sections.countdown) {
+    trailingSections.push({
       key: "countdown",
       node: <CountdownSection invitation={invitation} />,
-    },
-    {
+    });
+  }
+
+  if (invitation.sections.programTimeline && invitation.timeline.length > 0) {
+    trailingSections.push({
       key: "program-timeline",
       node: <ProgramTimelineSection invitation={invitation} />,
-    },
-    {
+    });
+  }
+
+  if (invitation.sections.venue) {
+    trailingSections.push({
       key: "venue",
       node: <VenueSection invitation={invitation} />,
-    },
-    {
+    });
+  }
+
+  if (invitation.sections.dressCode) {
+    trailingSections.push({
       key: "dress-code",
       node: <DressCodeSection invitation={invitation} />,
-    },
-    {
+    });
+  }
+
+  if (
+    invitation.sections.preWeddingEvents &&
+    invitation.preWeddingEvents.length > 0
+  ) {
+    trailingSections.push({
       key: "pre-wedding-events",
       node: <PreWeddingEventsSection invitation={invitation} />,
-    },
-    {
+    });
+  }
+
+  if (invitation.sections.transportation && invitation.transportation.enabled) {
+    trailingSections.push({
       key: "transportation",
       node: <TransportationSection invitation={invitation} />,
-    },
-  );
+    });
+  }
 
-  if (invitation.valimaInvitation.enabled) {
+  if (invitation.sections.valimaInvitation && invitation.valimaInvitation.enabled) {
     trailingSections.push({
       key: "valima-invitation",
       node: <ValimaInvitationSection invitation={invitation} />,
@@ -85,7 +103,7 @@ export function InvitationPage({ invitation }: InvitationPageProps) {
       <main className="page-spread mx-auto flex min-h-screen flex-col px-0 py-0">
         <div className="page-shell hidden h-6 sm:block" />
 
-        <HeroSection invitation={invitation} />
+        {invitation.sections.hero ? <HeroSection invitation={invitation} /> : null}
         {trailingSections.map((section, index) => (
           <div
             className={`relative left-1/2 right-1/2 w-screen -translate-x-1/2 ${

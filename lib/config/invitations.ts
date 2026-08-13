@@ -8,9 +8,17 @@ import type {
 
 const defaultSections: InvitationSectionFlags = {
   openingReveal: true,
+  hero: true,
+  invitationMessage: true,
   scratchReveal: true,
   gallery: true,
+  countdown: true,
+  programTimeline: true,
+  venue: true,
   dressCode: true,
+  preWeddingEvents: true,
+  transportation: true,
+  valimaInvitation: true,
   rsvp: true,
   closingMessage: true,
   backgroundMusic: true,
@@ -25,7 +33,7 @@ const baseVariant = (
   venue: sharedWeddingData.venue,
   transportation: sharedWeddingData.transportation,
   eventMap: sharedWeddingData.events,
-  preWeddingEvents: sharedWeddingData.preWeddingEvents,
+  preWeddingEvents: config.preWeddingEvents ?? sharedWeddingData.preWeddingEvents,
   gallery: sharedWeddingData.gallery,
   dressCode: sharedWeddingData.dressCode,
   guestNotes: sharedWeddingData.guestNotes,
@@ -119,12 +127,12 @@ export const invitationVariants: InvitationVariant[] = [
   }),
   baseVariant({
     id: "2",
-    label: "Valima Only",
+    label: "Nikkah and Valima Only",
     seoDescription: "Valima-only invitation variant for Imaz and Zeba.",
-    events: ["valima"],
-    preWeddingEvents: sharedWeddingData.preWeddingEvents,
+    events: ["nikah", "dinner", "valima"],
+    preWeddingEvents: [],
     valimaInvitation: {
-      enabled: false,
+      enabled: true,
       title: "Valima Reception",
       invitationLine: "We warmly invite you to join us for\nour Valima Reception.",
       date: "16 November 2026",
@@ -135,17 +143,31 @@ export const invitationVariants: InvitationVariant[] = [
       venue: sharedWeddingData.venue.name,
       location: sharedWeddingData.venue.address,
     },
-    timeline: timelineFromEvents({
-      title: sharedWeddingData.events.valima.title,
-      date: sharedWeddingData.events.valima.date,
-      time: sharedWeddingData.events.valima.time,
-      description: "Please join us for the Valima reception and an afternoon of celebration.",
-    }),
+   timeline: timelineFromEvents(
+      {
+        title: sharedWeddingData.events.nikah.title,
+        date: sharedWeddingData.events.nikah.date,
+        time: sharedWeddingData.events.nikah.time,
+        description: "Your gracious presence is requested as the blessed ceremony begins.",
+      },
+      {
+        title: sharedWeddingData.events.dinner.title,
+        date: sharedWeddingData.events.dinner.date,
+        time: sharedWeddingData.events.dinner.time,
+        description: "An evening of warm company, family blessings, and shared celebration.",
+      },
+      {
+        title: sharedWeddingData.events.valima.title,
+        date: sharedWeddingData.events.valima.date,
+        time: sharedWeddingData.events.valima.time,
+        description: "We gather again to continue the celebration with gratitude and joy.",
+      },
+    ),
     wordingVariant: "valima-only",
     sections: {
       scratchReveal: true,
       gallery: true,
-      dressCode: false,
+      dressCode: true,
     },
     content: {
       invitationLine: "Joyfully invite you to the Valima reception",
@@ -177,10 +199,10 @@ export const invitationVariants: InvitationVariant[] = [
   }),
   baseVariant({
     id: "3",
-    label: "Nikah and Valima",
+    label: "Nikah and haldi Only",
     seoDescription:
       "Nikah and Valima invitation variant with alternative wording for Imaz and Zeba.",
-    events: ["nikah", "valima"],
+    events: ["nikah","dinner"],
     preWeddingEvents: sharedWeddingData.preWeddingEvents,
     valimaInvitation: {
       enabled: false,
@@ -201,17 +223,18 @@ export const invitationVariants: InvitationVariant[] = [
         time: sharedWeddingData.events.nikah.time,
         description: "The blessed beginning of the wedding celebrations.",
       },
-      {
-        title: sharedWeddingData.events.valima.title,
-        date: sharedWeddingData.events.valima.date,
-        time: sharedWeddingData.events.valima.time,
-        description: "A joyful reception to continue the celebration with loved ones.",
+     {
+        title: sharedWeddingData.events.dinner.title,
+        date: sharedWeddingData.events.dinner.date,
+        time: sharedWeddingData.events.dinner.time,
+        description: "An evening of warm company, family blessings, and shared celebration.",
       },
     ),
     wordingVariant: "ceremony-and-reception",
     sections: {
-      scratchReveal: false,
+      scratchReveal: true,
       gallery: true,
+      dressCode: true
     },
     content: {
       invitationLine: "Invite you to witness and celebrate their union",
@@ -299,6 +322,75 @@ export const invitationVariants: InvitationVariant[] = [
       eventIntroductions: {
         valima:
           "This starter event card is driven entirely from the centralized config and shared event data.",
+      },
+    },
+  }),
+   baseVariant({
+    id: "5",
+    label: "Nikah Only",
+    seoDescription:
+      "Nikah and Valima invitation variant with alternative wording for Imaz and Zeba.",
+    events: ["nikah","dinner"],
+    preWeddingEvents: [],
+    valimaInvitation: {
+      enabled: false,
+      title: "Valima Reception",
+      invitationLine: "We warmly invite you to join us for\nour Valima Reception.",
+      date: "16 November 2026",
+      day: "Monday",
+      time: "1:00 PM",
+      timeLabel: "Onwards",
+      mapLink: "https://maps.app.goo.gl/279UJXWXYtF98GXP7",
+      venue: sharedWeddingData.venue.name,
+      location: sharedWeddingData.venue.address,
+    },
+    timeline: timelineFromEvents(
+      {
+        title: sharedWeddingData.events.nikah.title,
+        date: sharedWeddingData.events.nikah.date,
+        time: sharedWeddingData.events.nikah.time,
+        description: "The blessed beginning of the wedding celebrations.",
+      },
+     {
+        title: sharedWeddingData.events.dinner.title,
+        date: sharedWeddingData.events.dinner.date,
+        time: sharedWeddingData.events.dinner.time,
+        description: "An evening of warm company, family blessings, and shared celebration.",
+      },
+    ),
+    wordingVariant: "ceremony-and-reception",
+    sections: {
+      scratchReveal: true,
+      gallery: true,
+      dressCode: true
+    },
+    content: {
+      invitationLine: "Invite you to witness and celebrate their union",
+      supportingDateLabel: "From Nikah to Valima, November 2026",
+      heroEyebrow: "Celebrate with us",
+      heroMessage:
+        "A carefully tailored invitation presenting the Nikah and Valima in one graceful experience.",
+      invitationMessage:
+        "We are honored to welcome you to the Wedding ceremony of Imaz & Zeba as they begin their journey together in faith and love,\nwe thank you for being part of this blessed occasion \u2764",
+      openingTitle: "With gratitude to Allah",
+      openingMessage:
+        "We invite you to witness our Nikah and celebrate our Valima.",
+      openingPrompt: "View invitation",
+      coupleIntro:
+        "This invitation carries alternate wording while preserving the same architecture, allowing the design to remain polished across different guest journeys.",
+      quote:
+        "Two celebrations, one blessed beginning, and a shared prayer for a beautiful life ahead.",
+      closingTitle: "Please keep us in your prayers",
+      closingMessage:
+        "We are grateful for your love, duas, and presence in these celebrations.",
+      rsvpTitle: "We would be honored by your reply",
+      rsvpMessage:
+        "Please respond for the events shown below so arrangements may be made with care and clarity.",
+      eventIntroductions: {
+        nikah:
+          "The Nikah ceremony marks the beginning of this blessed new journey.",
+        valima:
+          "The Valima continues the celebration with loved ones gathered in joy.",
       },
     },
   }),

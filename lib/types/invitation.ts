@@ -51,9 +51,17 @@ export interface SharedWeddingData {
 
 export interface InvitationSectionFlags {
   openingReveal: boolean;
+  hero: boolean;
+  invitationMessage: boolean;
   scratchReveal: boolean;
   gallery: boolean;
+  countdown: boolean;
+  programTimeline: boolean;
+  venue: boolean;
   dressCode: boolean;
+  preWeddingEvents: boolean;
+  transportation: boolean;
+  valimaInvitation: boolean;
   rsvp: boolean;
   closingMessage: boolean;
   backgroundMusic: boolean;
