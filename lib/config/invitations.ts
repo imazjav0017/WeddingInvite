@@ -23,7 +23,9 @@ const baseVariant = (
   couple: sharedWeddingData.couple,
   contact: sharedWeddingData.contact,
   venue: sharedWeddingData.venue,
+  transportation: sharedWeddingData.transportation,
   eventMap: sharedWeddingData.events,
+  preWeddingEvents: sharedWeddingData.preWeddingEvents,
   gallery: sharedWeddingData.gallery,
   dressCode: sharedWeddingData.dressCode,
   guestNotes: sharedWeddingData.guestNotes,
@@ -43,6 +45,7 @@ export const invitationVariants: InvitationVariant[] = [
     label: "Full Celebration",
     seoDescription: "Nikah, dinner, and valima invitation for Imaz and Zeba.",
     events: ["nikah", "dinner", "valima"],
+    preWeddingEvents: sharedWeddingData.preWeddingEvents,
     timeline: timelineFromEvents(
       {
         title: sharedWeddingData.events.nikah.title,
@@ -107,6 +110,7 @@ export const invitationVariants: InvitationVariant[] = [
     label: "Valima Only",
     seoDescription: "Valima-only invitation variant for Imaz and Zeba.",
     events: ["valima"],
+    preWeddingEvents: sharedWeddingData.preWeddingEvents,
     timeline: timelineFromEvents({
       title: sharedWeddingData.events.valima.title,
       date: sharedWeddingData.events.valima.date,
@@ -153,6 +157,7 @@ export const invitationVariants: InvitationVariant[] = [
     seoDescription:
       "Nikah and Valima invitation variant with alternative wording for Imaz and Zeba.",
     events: ["nikah", "valima"],
+    preWeddingEvents: sharedWeddingData.preWeddingEvents,
     timeline: timelineFromEvents(
       {
         title: sharedWeddingData.events.nikah.title,
@@ -208,6 +213,7 @@ export const invitationVariants: InvitationVariant[] = [
     seoDescription:
       "Minimal invitation variant reserved for future customization scenarios.",
     events: ["valima"],
+    preWeddingEvents: sharedWeddingData.preWeddingEvents,
     timeline: timelineFromEvents({
       title: sharedWeddingData.events.valima.title,
       date: sharedWeddingData.events.valima.date,

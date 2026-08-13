@@ -1,14 +1,13 @@
 import { InvitationExperience } from "@/components/invitation/invitation-experience";
 import { ClosingMessageSection } from "@/components/invitation/sections/closing-message-section";
 import { CountdownSection } from "@/components/invitation/sections/countdown-section";
-import { CoupleIntroSection } from "@/components/invitation/sections/couple-intro-section";
 import { DressCodeSection } from "@/components/invitation/sections/dress-code-section";
-import { EventSection } from "@/components/invitation/sections/event-section";
 import { GallerySection } from "@/components/invitation/sections/gallery-section";
 import { HeroSection } from "@/components/invitation/sections/hero-section";
+import { PreWeddingEventsSection } from "@/components/invitation/sections/pre-wedding-events-section";
 import { ProgramTimelineSection } from "@/components/invitation/sections/program-timeline-section";
-import { RsvpSection } from "@/components/invitation/sections/rsvp-section";
 import { ScratchDateSection } from "@/components/invitation/sections/scratch-date-section";
+import { TransportationSection } from "@/components/invitation/sections/transportation-section";
 import { VenueSection } from "@/components/invitation/sections/venue-section";
 import type { InvitationVariant } from "@/lib/types/invitation";
 
@@ -30,24 +29,9 @@ export function InvitationPage({ invitation }: InvitationPageProps) {
         <CountdownSection invitation={invitation} />
         <ProgramTimelineSection invitation={invitation} />
         <VenueSection invitation={invitation} />
-        <CoupleIntroSection invitation={invitation} />
-
-        {invitation.events.map((eventId, index) => {
-          const event = invitation.eventMap[eventId];
-
-          return (
-            <EventSection
-              key={event.id}
-              event={event}
-              invitation={invitation}
-              index={index}
-            />
-          );
-        })}
-        {invitation.sections.dressCode ? (
-          <DressCodeSection invitation={invitation} />
-        ) : null}
-        {invitation.sections.rsvp ? <RsvpSection invitation={invitation} /> : null}
+        <DressCodeSection invitation={invitation} />
+        <PreWeddingEventsSection invitation={invitation} />
+        <TransportationSection invitation={invitation} />
         {invitation.sections.closingMessage ? (
           <ClosingMessageSection invitation={invitation} />
         ) : null}

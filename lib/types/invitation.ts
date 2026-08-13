@@ -39,7 +39,9 @@ export interface SharedWeddingData {
   couple: CoupleDetails;
   contact: ContactDetails;
   venue: VenueDetails;
+  transportation: TransportationDetails;
   events: Record<EventId, InvitationEvent>;
+  preWeddingEvents: PreWeddingEvent[];
   gallery: GalleryImage[];
   dressCode: DressCodeDetails;
   guestNotes: GuestNote[];
@@ -87,6 +89,7 @@ export interface InvitationVariantBase {
   label: string;
   seoDescription: string;
   events: EventId[];
+  preWeddingEvents: PreWeddingEvent[];
   wordingVariant: WordingVariant;
   timeline: TimelineItem[];
   sections?: Partial<InvitationSectionFlags>;
@@ -98,13 +101,28 @@ export interface InvitationVariant extends Omit<InvitationVariantBase, "sections
   couple: CoupleDetails;
   contact: ContactDetails;
   venue: VenueDetails;
+  transportation: TransportationDetails;
   eventMap: Record<EventId, InvitationEvent>;
+  preWeddingEvents: PreWeddingEvent[];
   gallery: GalleryImage[];
   dressCode: DressCodeDetails;
   guestNotes: GuestNote[];
   weddingSignature: WeddingSignature;
   scratchReveal: ScratchRevealDetails;
   timeline: TimelineItem[];
+}
+
+export interface PreWeddingEvent {
+  title: string;
+  date?: string;
+  time?: string;
+  venue?: string;
+}
+
+export interface TransportationDetails {
+  enabled: boolean;
+  title: string;
+  message: string;
 }
 
 export interface GalleryImage {
@@ -117,8 +135,10 @@ export interface GalleryImage {
 
 export interface DressCodeDetails {
   title: string;
-  attire: string;
-  note: string;
+  womenTitle: string;
+  womenAttire: string;
+  menTitle: string;
+  menAttire: string;
 }
 
 export interface GuestNote {

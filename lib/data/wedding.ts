@@ -16,6 +16,21 @@ export const sharedWeddingData: SharedWeddingData = {
     address: "Turbhe, Navi Mumbai",
     mapLink: "https://maps.app.goo.gl/Rsikti7bZvozHFmQA",
   },
+  transportation: {
+    enabled: true,
+    title: "Transportation",
+    message: "Pickup service will be available to and from Turbhe Station.",
+  },
+  preWeddingEvents: [
+    {
+      title: "Mehendi",
+      date: "10 November 2026",
+    },
+    {
+      title: "Haldi",
+      date: "11 November 2026",
+    },
+  ],
   events: {
     nikah: {
       id: "nikah",
@@ -84,10 +99,11 @@ export const sharedWeddingData: SharedWeddingData = {
     },
   ],
   dressCode: {
-    title: "Dress Code & Notes",
-    attire: "Festive formal attire in elegant tones is warmly encouraged.",
-    note:
-      "Modest silhouettes, tailored eastern or western formalwear, and soft celebratory colors will suit the evening beautifully.",
+    title: "Dress Code",
+    womenTitle: "Women",
+    womenAttire: "Elegant formal attire in pastel or jewel tones",
+    menTitle: "Men",
+    menAttire: "Suit or traditional formal wear",
   },
   guestNotes: [
     {
