@@ -9,6 +9,7 @@ import {
   type KeyboardEvent,
 } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import Image from "next/image";
 import { CinematicInvitationHero } from "@/components/hero/cinematic-invitation-hero";
 import { getInvitationVariant } from "@/lib/config/invitations";
 import type { InvitationVariant } from "@/lib/types/invitation";
@@ -55,8 +56,8 @@ export function EnvelopeVideoIntro({
     onComplete?.();
   }, [onComplete, onHeroVisible]);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const [isVideoReady, setIsVideoReady] = useState(false);
   const [phase, setPhase] = useState<IntroPhase>("waiting");
+  const [waitingFrameDataUrl, setWaitingFrameDataUrl] = useState<string | null>(null);
 
   useEffect(() => {
     phaseRef.current = phase;
@@ -72,9 +73,29 @@ export function EnvelopeVideoIntro({
     video.muted = true;
     video.pause();
 
-    if (video.readyState >= 2) {
-      setIsVideoReady(true);
-    }
+    const captureWaitingFrame = () => {
+      if (video.videoWidth <= 0 || video.videoHeight <= 0) {
+        return;
+      }
+
+      try {
+        const canvas = document.createElement("canvas");
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        const context = canvas.getContext("2d");
+
+        if (!context) {
+          return;
+        }
+
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        setWaitingFrameDataUrl(canvas.toDataURL("image/jpeg", 0.92));
+      } catch {
+        // Some mobile browsers can be picky about frame extraction timing. In that
+        // case we still fall back to the paused video element itself.
+      }
+    };
 
     const prepareWaitingFrame = () => {
       if (
@@ -90,9 +111,7 @@ export function EnvelopeVideoIntro({
       try {
         video.pause();
         video.currentTime = Math.min(OPEN_WAIT_TIME, Math.max(0, video.duration || OPEN_WAIT_TIME));
-      } catch {
-        setIsVideoReady(true);
-      }
+      } catch {}
     };
 
     const handleCanPlay = () => {
@@ -104,7 +123,6 @@ export function EnvelopeVideoIntro({
         prepareWaitingFrame();
       }
 
-      setIsVideoReady(true);
     };
 
     const handleLoadedData = () => {
@@ -116,12 +134,10 @@ export function EnvelopeVideoIntro({
         prepareWaitingFrame();
       }
 
-      setIsVideoReady(true);
     };
 
     const handleLoadedMetadata = () => {
       if (prefersReducedMotion) {
-        setIsVideoReady(true);
         return;
       }
 
@@ -132,9 +148,8 @@ export function EnvelopeVideoIntro({
       if (phaseRef.current === "waiting") {
         hasReachedWaitingFrameRef.current = true;
         video.pause();
+        captureWaitingFrame();
       }
-
-      setIsVideoReady(true);
     };
 
     const handleTimeUpdate = () => {
@@ -312,6 +327,18 @@ export function EnvelopeVideoIntro({
             src={VIDEO_SOURCE}
           />
 
+          {phase === "waiting" && waitingFrameDataUrl ? (
+            <Image
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 z-[1] h-full w-full object-cover"
+              fill
+              priority
+              src={waitingFrameDataUrl}
+              unoptimized
+            />
+          ) : null}
+
           <AnimatePresence>
             {phase === "waiting" ? (
               <motion.div
@@ -348,10 +375,6 @@ export function EnvelopeVideoIntro({
               ) : null
             ) : null}
           </AnimatePresence>
-
-          {!isVideoReady ? (
-            <div className="absolute inset-0 bg-[#120b0d]" />
-          ) : null}
         </div>
       </motion.div>
     </section>
