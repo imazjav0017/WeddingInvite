@@ -1,8 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { FadeIn } from "@/components/motion/fade-in";
 import type { InvitationVariant } from "@/lib/types/invitation";
 import { motion, useReducedMotion } from "motion/react";
+import { dancingScript } from "@/lib/fonts";
 
 type ClosingMessageSectionProps = {
   invitation: InvitationVariant;
@@ -58,24 +60,29 @@ export function ClosingMessageSection({
         </motion.div>
 
         <motion.h2
-          className="mb-4 font-[var(--font-script)] text-4xl leading-relaxed text-[rgb(139,35,55)] md:text-5xl"
+          className={`${dancingScript.className} mb-4 font-[var(--font-script)] text-4xl leading-relaxed text-[rgb(139,35,55)] md:text-5xl`}
           initial={prefersReducedMotion ? false : { opacity: 0, y: 22 }}
           transition={{ duration: prefersReducedMotion ? 0.01 : 0.55, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
           whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
         >
-          We can&apos;t wait to celebrate with you!
+          We look forward to celebrating with you!
         </motion.h2>
 
-        <motion.p
-          className="font-[var(--font-script)] text-2xl text-[var(--muted)]"
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
-          transition={{ duration: prefersReducedMotion ? 0.01 : 0.48, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        <motion.div
+          className="mx-auto flex w-full justify-center"
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 20, scale: 0.96 }}
+          transition={{ duration: prefersReducedMotion ? 0.01 : 0.55, delay: 0.09, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
-          whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+          whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
         >
-          {invitation.couple.displayNames}
-        </motion.p>
+          <img
+            alt="I and Z monogram"
+            className="h-auto w-[11.5rem] select-none object-contain md:w-[13rem]"
+            draggable={false}
+            src="/images/IZ_Logo.png"
+          />
+        </motion.div>
 
         <motion.div
           initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}

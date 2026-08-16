@@ -4,6 +4,7 @@ import {
 } from "@/components/invitation/decorative-divider";
 import type { InvitationVariant } from "@/lib/types/invitation";
 import { FadeIn } from "@/components/motion/fade-in";
+import { dancingScript } from "@/lib/fonts";
 
 type HeroSectionProps = {
   invitation: InvitationVariant;
@@ -35,7 +36,7 @@ export function HeroSection({ invitation }: HeroSectionProps) {
           rightLineClassName="w-20 bg-[linear-gradient(to_left,transparent,rgb(201,138,152))]"
         />
 
-        <p className="whitespace-pre-wrap break-words font-[var(--font-script)] text-2xl leading-relaxed italic text-[rgb(251,230,234)] drop-shadow-[0_2px_14px_rgba(0,0,0,0.55)] md:text-3xl">
+        <p className={`${dancingScript.className} whitespace-pre-wrap break-words font-[var(--font-script)] text-2xl leading-relaxed italic text-[rgb(251,230,234)] drop-shadow-[0_2px_14px_rgba(0,0,0,0.55)] md:text-3xl`}>
           {invitationMessage}
           {hasTrailingHeart ? (
             <>

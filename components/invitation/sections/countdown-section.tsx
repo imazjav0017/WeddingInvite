@@ -3,6 +3,7 @@
 import { CountdownClock } from "@/components/invitation/countdown-clock";
 import { DecorativeDivider } from "@/components/invitation/decorative-divider";
 import { FadeIn } from "@/components/motion/fade-in";
+import { dancingScript } from "@/lib/fonts";
 import { motion, useReducedMotion } from "motion/react";
 import type { InvitationVariant } from "@/lib/types/invitation";
 
@@ -17,7 +18,7 @@ export function CountdownSection({ invitation }: CountdownSectionProps) {
     <FadeIn className="relative overflow-hidden px-6 py-16 md:py-20">
       <div className="mx-auto max-w-3xl text-center">
         <motion.h3
-          className="mb-3 font-[var(--font-script)] text-4xl leading-none text-[rgb(139,35,55)] md:text-5xl"
+          className={`${dancingScript.className} mb-3 text-4xl leading-none text-[rgb(139,35,55)] md:text-5xl`}
           initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
           transition={{ duration: prefersReducedMotion ? 0.01 : 0.55, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}

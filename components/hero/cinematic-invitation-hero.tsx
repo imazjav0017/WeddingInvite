@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { DecorativeHeartIcon } from "@/components/invitation/decorative-divider";
 import { cn } from "@/lib/utils/cn";
 import type { InvitationVariant } from "@/lib/types/invitation";
+import { dancingScript } from "@/lib/fonts";
 
 type CinematicInvitationHeroProps = {
   invitation: InvitationVariant;
@@ -67,7 +68,49 @@ export function CinematicInvitationHero({
                   ? { opacity: 1 }
                   : { opacity: 1, y: 0 }
             }
-            className="max-w-[18rem] font-[var(--font-script)] text-[24px] leading-[1.25] text-[rgb(245,230,224)] drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)] sm:max-w-[26rem] md:text-[29px]"
+            className={`${dancingScript.className} max-w-[18rem] font-[var(--font-script)] text-[18px] leading-[1.25] text-[rgb(245,230,224)] drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)] sm:max-w-[26rem] md:text-[29px]`}
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
+            transition={{
+              duration: prefersReducedMotion ? 0.2 : 0.65,
+              delay: prefersReducedMotion ? 0.08 : 0.38,
+              ease: EASE,
+            }}
+          >
+            In the Name of Allah, the most gracious,
+            <br />
+            the most merciful
+          </motion.p>
+          <motion.div
+            animate={
+              !isActive
+                ? { opacity: 0, scale: prefersReducedMotion ? 1 : 0.88 }
+                : prefersReducedMotion
+                  ? { opacity: 1 }
+                  : { opacity: 1, scale: 1 }
+            }
+            className="mt-5 mb-5 text-[10px] leading-none text-[rgb(245,230,224)] drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]"
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.88 }}
+            transition={{
+              duration: prefersReducedMotion ? 0.2 : 0.45,
+              delay: prefersReducedMotion ? 0 : 0.18,
+              ease: EASE,
+            }}
+          >
+            <DecorativeHeartIcon
+              className="text-[rgb(245,230,224)]"
+              size={10}
+            />
+          </motion.div>
+
+          <motion.p
+            animate={
+              !isActive
+                ? { opacity: 0, y: prefersReducedMotion ? 0 : 14 }
+                : prefersReducedMotion
+                  ? { opacity: 1 }
+                  : { opacity: 1, y: 0 }
+            }
+            className={`${dancingScript.className} max-w-[18rem] font-[var(--font-script)] text-[18px] leading-[1.25] text-[rgb(245,230,224)] drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)] sm:max-w-[26rem] md:text-[29px]`}
             initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
             transition={{
               duration: prefersReducedMotion ? 0.2 : 0.65,
@@ -153,7 +196,7 @@ export function CinematicInvitationHero({
                   ? { opacity: 1 }
                   : { opacity: 1, y: 0 }
             }
-            className="mt-7 font-[var(--font-script)] text-6xl leading-none tracking-[0.01em] text-[rgb(245,230,224)] drop-shadow-[0_2px_14px_rgba(0,0,0,0.75)] md:text-9xl"
+            className={`${dancingScript.className} mt-7 font-[var(--font-script)] text-6xl leading-none tracking-[0.01em] text-[rgb(245,230,224)] drop-shadow-[0_2px_14px_rgba(0,0,0,0.75)] md:text-9xl`}
             initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 24 }}
             transition={{
               ...baseTransition,
@@ -172,7 +215,7 @@ export function CinematicInvitationHero({
                     ? { opacity: 1 }
                     : { opacity: 1, y: 0 }
               }
-              className="mt-2 max-w-[16rem] font-[var(--font-display)] text-base leading-[1.3] tracking-[0.02em] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] md:text-lg"
+              className={`${dancingScript.className} mt-2 max-w-[16rem] font-[var(--font-display)] text-base leading-[1.3] tracking-[0.02em] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] md:text-lg`}
               initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
               transition={{
                 duration: prefersReducedMotion ? 0.2 : 0.55,
@@ -186,7 +229,7 @@ export function CinematicInvitationHero({
 
           <motion.div
             animate={{ opacity: isActive ? 1 : 0 }}
-            className="mt-4 font-[var(--font-script)] text-3xl leading-none text-[rgba(245,230,224,0.8)] drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] md:text-4xl"
+            className={`${dancingScript.className} mt-4 font-[var(--font-script)] text-3xl leading-none text-[rgba(245,230,224,0.8)] drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] md:text-4xl`}
             initial={{ opacity: 0 }}
             transition={{
               duration: prefersReducedMotion ? 0.2 : 0.45,
@@ -205,7 +248,7 @@ export function CinematicInvitationHero({
                   ? { opacity: 1 }
                   : { opacity: 1, y: 0 }
             }
-            className="mt-3 font-[var(--font-script)] text-6xl leading-none tracking-[0.01em] text-[rgb(245,230,224)] drop-shadow-[0_2px_14px_rgba(0,0,0,0.75)] md:text-9xl"
+            className={`${dancingScript.className} mt-3 font-[var(--font-script)] text-6xl leading-none tracking-[0.01em] text-[rgb(245,230,224)] drop-shadow-[0_2px_14px_rgba(0,0,0,0.75)] md:text-9xl`}
             initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 24 }}
             transition={{
               ...baseTransition,
@@ -224,7 +267,7 @@ export function CinematicInvitationHero({
                     ? { opacity: 1 }
                     : { opacity: 1, y: 0 }
               }
-              className="mt-3 max-w-[16rem] font-[var(--font-display)] text-base leading-[1.3] tracking-[0.02em] text-white/95 drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] md:text-lg"
+              className={`${dancingScript.className} mt-3 max-w-[16rem] font-[var(--font-display)] text-base leading-[1.3] tracking-[0.02em] text-white/95 drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] md:text-lg`}
               initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
               transition={{
                 duration: prefersReducedMotion ? 0.2 : 0.55,

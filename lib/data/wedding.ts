@@ -2,9 +2,9 @@ import type { SharedWeddingData } from "@/lib/types/invitation";
 
 export const sharedWeddingData: SharedWeddingData = {
   couple: {
-    partnerOne: "Imaz",
-    partnerTwo: "Zeba",
-    displayNames: "Imaz & Zeba",
+    partnerOne: "Zeba Siddiqui",
+    partnerTwo: "Imaz Javeed",
+    displayNames: "Zeba & Imaz",
   },
   contact: {
     rsvpLink: "https://wa.me/440000000000",
@@ -13,22 +13,22 @@ export const sharedWeddingData: SharedWeddingData = {
   },
   venue: {
     name: "Wedding Lands",
-    address: "Turbhe, Navi Mumbai",
+    address: "Turbhe, Navi Mumbai, 400706",
     mapLink: "https://maps.app.goo.gl/Rsikti7bZvozHFmQA",
   },
   transportation: {
     enabled: true,
     title: "Transportation",
-    message: "Pickup service will be available to and from Turbhe Station.",
+    message: "Pickup and drop off services will be available to and from Turbhe railway station only.",
   },
   preWeddingEvents: [
     {
-      title: "Mehendi",
-      date: "10 November 2026",
-    },
-    {
       title: "Haldi",
-      date: "11 November 2026",
+      date: "11 November 2026, 7.30 PM onwards",
+    },
+     {
+      title: "Mehendi",
+      date: "12 November 2026, 11 AM onwards ",
     },
   ],
   events: {
@@ -39,7 +39,7 @@ export const sharedWeddingData: SharedWeddingData = {
       description: "Placeholder Nikah details ready to be refined later.",
       date: "13 November 2026",
       isoDate: "2026-11-13T12:00:00+00:00",
-      time: "2:00 PM",
+      time: "4:30 PM",
       venue: {
         name: "Nikah Venue Placeholder",
         address: "123 Ceremony Road, London, United Kingdom",
@@ -49,11 +49,11 @@ export const sharedWeddingData: SharedWeddingData = {
     dinner: {
       id: "dinner",
       typeLabel: "Dinner",
-      title: "Wedding Dinner",
+      title: "Dawat-e-Nikah",
       description: "Placeholder dinner details ready to be refined later.",
       date: "13 November 2026",
       isoDate: "2026-11-13T18:30:00+00:00",
-      time: "6:30 PM",
+      time: "7:30 PM onwards",
       venue: {
         name: "Dinner Venue Placeholder",
         address: "456 Celebration Avenue, London, United Kingdom",
@@ -63,11 +63,11 @@ export const sharedWeddingData: SharedWeddingData = {
     valima: {
       id: "valima",
       typeLabel: "Valima",
-      title: "Valima Reception",
+      title: "Dawat-e-Walima",
       description: "Placeholder Valima details ready to be refined later.",
       date: "16 November 2026",
       isoDate: "2026-11-16T13:00:00+00:00",
-      time: "1:00 PM",
+      time: "7:30 PM onwards",
       venue: {
         name: "Valima Venue Placeholder",
         address: "789 Reception Street, London, United Kingdom",
@@ -101,9 +101,9 @@ export const sharedWeddingData: SharedWeddingData = {
   dressCode: {
     title: "Dress Code",
     womenTitle: "Women",
-    womenAttire: "Elegant formal attire in pastel or jewel tones",
+    womenAttire: "Elegant traditional attire in pastel tones",
     menTitle: "Men",
-    menAttire: "Suit or traditional formal wear",
+    menAttire: "Traditional attire in pastel tones",
   },
   guestNotes: [
     {
@@ -129,6 +129,6 @@ export const sharedWeddingData: SharedWeddingData = {
     month: "NOVEMBER",
     year: "2026",
     weekday: "Friday",
-    time: "5 PM",
+    time: "After Asr",
   },
 };

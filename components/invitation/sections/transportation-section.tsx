@@ -4,6 +4,7 @@ import { DecorativeDivider } from "@/components/invitation/decorative-divider";
 import { FadeIn } from "@/components/motion/fade-in";
 import type { InvitationVariant } from "@/lib/types/invitation";
 import { motion, useReducedMotion } from "motion/react";
+import { dancingScript } from "@/lib/fonts";
 
 type TransportationSectionProps = {
   invitation: InvitationVariant;
@@ -45,7 +46,7 @@ export function TransportationSection({
         </motion.div>
 
         <motion.h3
-          className="mb-2 text-center font-[var(--font-script)] text-4xl leading-none text-[rgb(139,35,55)] md:text-5xl"
+          className={`${dancingScript.className} mb-2 text-center font-[var(--font-script)] text-4xl leading-none text-[rgb(139,35,55)] md:text-5xl`}
           initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
           transition={{ duration: prefersReducedMotion ? 0.01 : 0.55, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}

@@ -11,6 +11,7 @@ import {
 } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { DecorativeDivider } from "@/components/invitation/decorative-divider";
+import { dancingScript } from "@/lib/fonts";
 import { cn } from "@/lib/utils/cn";
 
 type ScratchRevealRenderState = {
@@ -52,7 +53,6 @@ const HEART_MASK_URL = `url("data:image/svg+xml,${encodeURIComponent(
 )}")`;
 const HEART_CLIP_ID = "royal-heart-clip";
 const CELEBRATION_COLORS = ["#A92E4A", "#C45A73", "#D98B9C", "#E9B7C2"];
-
 function createCelebrationParticles() {
   const totalParticles = 38;
 
@@ -487,7 +487,10 @@ export function ScratchReveal({
           <AnimatePresence initial={false} mode="wait">
             <motion.h3
               animate={reducedMotionEnabled ? { opacity: 1 } : { opacity: 1, y: 0 }}
-              className="font-[var(--font-script)] text-4xl leading-none text-[rgb(139,35,55)] md:text-5xl"
+              className={cn(
+                "text-4xl leading-none text-[rgb(139,35,55)] md:text-5xl",
+                dancingScript.className,
+              )}
               exit={reducedMotionEnabled ? { opacity: 0 } : { opacity: 0, y: -10 }}
               initial={
                 reducedMotionEnabled

@@ -4,6 +4,7 @@ import { DecorativeDivider } from "@/components/invitation/decorative-divider";
 import { FadeIn } from "@/components/motion/fade-in";
 import type { InvitationVariant } from "@/lib/types/invitation";
 import { motion, useReducedMotion } from "motion/react";
+import { dancingScript } from "@/lib/fonts";
 
 type DressCodeSectionProps = {
   invitation: InvitationVariant;
@@ -41,7 +42,7 @@ export function DressCodeSection({ invitation }: DressCodeSectionProps) {
           </motion.div>
 
           <motion.h3
-            className="mb-2 text-center font-[var(--font-script)] text-4xl leading-none text-[rgb(139,35,55)] md:text-5xl"
+            className={`${dancingScript.className} mb-2 text-center font-[var(--font-script)] text-4xl leading-none text-[rgb(139,35,55)] md:text-5xl`}
             initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
             transition={{ duration: prefersReducedMotion ? 0.01 : 0.55, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
@@ -92,6 +93,18 @@ export function DressCodeSection({ invitation }: DressCodeSectionProps) {
               {dressCode.menAttire}
             </p>
           </motion.div>
+          <motion.div
+            className="py-4 text-center"
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 22 }}
+            transition={{ duration: prefersReducedMotion ? 0.01 : 0.48, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true }}
+            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+          >
+            <p className="text-sm leading-relaxed text-[var(--muted)]">
+              Please avoid shades of ivory
+            </p>
+          </motion.div>
+           
         </div>
       </div>
     </FadeIn>
