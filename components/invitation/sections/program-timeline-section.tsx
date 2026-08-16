@@ -125,7 +125,7 @@ export function ProgramTimelineSection({
           whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
         >
           <p className={`${dancingScript.className} mt-10 mb-2 font-[var(--font-display)] text-2xl font-semibold text-[rgb(139,35,55)]`}>
-            Insha Allah
+            Insha 'Allah
           </p>
         </motion.div>
       </div>

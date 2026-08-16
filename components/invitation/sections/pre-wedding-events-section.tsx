@@ -105,6 +105,7 @@ export function PreWeddingEventsSection({
                   {event.venue}
                 </p>
               ) : null}
+              
             </motion.div>
           );
         })}
@@ -120,7 +121,7 @@ export function PreWeddingEventsSection({
               whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
             >
             <h4 className={`${dancingScript.className} whitespace-pre-wrap break-words font-[var(--font-display)] text-lg font-semibold leading-tight text-[rgb(139,35,55)]`}>
-                Insha Allah
+                Insha 'Allah
               </h4>
             </motion.div>
       </div>

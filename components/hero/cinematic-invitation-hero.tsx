@@ -59,7 +59,30 @@ export function CinematicInvitationHero({
               size={10}
             />
           </motion.div>
-
+          <motion.p
+  dir="rtl"
+  lang="ar"
+  animate={
+    !isActive
+      ? { opacity: 0, y: prefersReducedMotion ? 0 : 14 }
+      : prefersReducedMotion
+        ? { opacity: 1 }
+        : { opacity: 1, y: 0 }
+  }
+  className="mb-3 text-center text-[28px] leading-relaxed text-[rgb(245,230,224)] drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)] md:text-[36px]"
+  initial={
+    prefersReducedMotion
+      ? { opacity: 0 }
+      : { opacity: 0, y: 14 }
+  }
+  transition={{
+    duration: prefersReducedMotion ? 0.2 : 0.65,
+    delay: prefersReducedMotion ? 0.05 : 0.18,
+    ease: EASE,
+  }}
+>
+  بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+</motion.p>
           <motion.p
             animate={
               !isActive
@@ -215,7 +238,7 @@ export function CinematicInvitationHero({
                     ? { opacity: 1 }
                     : { opacity: 1, y: 0 }
               }
-              className={`${dancingScript.className} mt-2 max-w-[16rem] font-[var(--font-display)] text-base leading-[1.3] tracking-[0.02em] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] md:text-lg`}
+              className={`${dancingScript.className} whitespace-pre-line mt-2 max-w-[16rem] font-[var(--font-display)] text-base leading-[1.3] tracking-[0.02em] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] md:text-lg`}
               initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
               transition={{
                 duration: prefersReducedMotion ? 0.2 : 0.55,
@@ -267,7 +290,7 @@ export function CinematicInvitationHero({
                     ? { opacity: 1 }
                     : { opacity: 1, y: 0 }
               }
-              className={`${dancingScript.className} mt-3 max-w-[16rem] font-[var(--font-display)] text-base leading-[1.3] tracking-[0.02em] text-white/95 drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] md:text-lg`}
+              className={`${dancingScript.className} whitespace-pre-line mt-3 max-w-[16rem] font-[var(--font-display)] text-base leading-[1.3] tracking-[0.02em] text-white/95 drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] md:text-lg`}
               initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
               transition={{
                 duration: prefersReducedMotion ? 0.2 : 0.55,

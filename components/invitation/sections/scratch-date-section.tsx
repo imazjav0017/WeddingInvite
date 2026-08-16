@@ -46,7 +46,7 @@ export function ScratchDateSection({
             initial={prefersReducedMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: prefersReducedMotion ? 0.01 : 0.45, ease: [0.22, 1, 0.36, 1] }}
           >
-            Insha Allah
+            Insha 'Allah
           </motion.p>
           <motion.p
             animate={

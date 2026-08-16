@@ -142,15 +142,30 @@ function drawGlitterHeart(
   const areaScale = (width * height) / 90000;
   const smallGlitterCount = Math.floor(1200 * areaScale);
   const brightGlitterCount = Math.floor(240 * areaScale);
+  const placeParticles = (
+    totalCount: number,
+    drawParticle: (x: number, y: number) => void,
+  ) => {
+    const columns = Math.max(12, Math.round(Math.sqrt(totalCount * (width / height))));
+    const rows = Math.max(12, Math.round(totalCount / columns));
+    const stepX = width / columns;
+    const stepY = height / rows;
 
-  for (let index = 0; index < smallGlitterCount; index += 1) {
-    const x = Math.random() * width;
-    const y = Math.random() * height;
+    for (let row = 0; row < rows; row += 1) {
+      for (let column = 0; column < columns; column += 1) {
+        const x = (column + 0.5) * stepX + (Math.random() - 0.5) * stepX * 0.7;
+        const y = (row + 0.5) * stepY + (Math.random() - 0.5) * stepY * 0.7;
 
-    if (!context.isPointInPath(heartPath, x, y)) {
-      continue;
+        if (!context.isPointInPath(heartPath, x, y)) {
+          continue;
+        }
+
+        drawParticle(x, y);
+      }
     }
+  };
 
+  placeParticles(smallGlitterCount, (x, y) => {
     const radius = Math.random() * 1.6 + 0.25;
     const alpha = Math.random() * 0.45 + 0.08;
 
@@ -158,16 +173,9 @@ function drawGlitterHeart(
     context.fillStyle = `rgba(255, 248, 245, ${alpha})`;
     context.arc(x, y, radius, 0, Math.PI * 2);
     context.fill();
-  }
+  });
 
-  for (let index = 0; index < brightGlitterCount; index += 1) {
-    const x = Math.random() * width;
-    const y = Math.random() * height;
-
-    if (!context.isPointInPath(heartPath, x, y)) {
-      continue;
-    }
-
+  placeParticles(brightGlitterCount, (x, y) => {
     const radius = Math.random() * 2.4 + 0.9;
     const alpha = Math.random() * 0.55 + 0.25;
 
@@ -179,6 +187,23 @@ function drawGlitterHeart(
     context.arc(x, y, radius, 0, Math.PI * 2);
     context.fill();
     context.restore();
+  });
+
+  for (let index = 0; index < 120; index += 1) {
+    const x = width * (0.16 + Math.random() * 0.28);
+    const y = height * (0.08 + Math.random() * 0.3);
+
+    if (!context.isPointInPath(heartPath, x, y)) {
+      continue;
+    }
+
+    const radius = Math.random() * 1.8 + 0.4;
+    const alpha = Math.random() * 0.32 + 0.12;
+
+    context.beginPath();
+    context.fillStyle = `rgba(255, 249, 246, ${alpha})`;
+    context.arc(x, y, radius, 0, Math.PI * 2);
+    context.fill();
   }
 
   context.restore();

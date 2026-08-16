@@ -57,7 +57,7 @@ export const invitationVariants: InvitationVariant[] = [
     valimaInvitation: {
       enabled: true,
       title: "Dawat-e-Walima",
-      invitationLine: "Insha Allah",
+      invitationLine: "Insha 'Allah",
       date: "16 November 2026",
       day: "Monday",
       time: "7:30 PM",
@@ -94,9 +94,9 @@ export const invitationVariants: InvitationVariant[] = [
       rsvp: true,
     },
     content: {
-      invitationLine: "S/o Mr. Mohamed Viquar Bangi & Mrs. Almas Viquar Nari",
+      invitationLine: "S/o Mr. Mohamed Viquar Bangi &\nMrs. Almas Viquar Nari",
       supportingDateLabel: "Celebrations begin on Friday, 13 November 2026",
-      heroEyebrow: "D/o Mr Sohail Ahmed Siddiqui & Mrs. Nahid Siddiqui",
+      heroEyebrow: "D/o Mr Sohail Ahmed Siddiqui &\nMrs. Nahid Siddiqui",
       heroMessage:
         "Invite you to share in their wedding celebrations and blessings across each cherished gathering.",
       invitationMessage:
@@ -133,34 +133,34 @@ export const invitationVariants: InvitationVariant[] = [
     preWeddingEvents: [],
     valimaInvitation: {
       enabled: true,
-      title: "Valima Reception",
-      invitationLine: "We warmly invite you to join us for\nour Valima Reception.",
+      title: "Dawat-e-Walima",
+      invitationLine: "Insha 'Allah",
       date: "16 November 2026",
       day: "Monday",
-      time: "1:00 PM",
+      time: "7:30 PM",
       timeLabel: "Onwards",
       mapLink: "https://maps.app.goo.gl/279UJXWXYtF98GXP7",
-      venue: sharedWeddingData.venue.name,
-      location: sharedWeddingData.venue.address,
+      venue: "Taj Wellington Mews",
+      location: "Tharamani, Chennai",
     },
    timeline: timelineFromEvents(
-      {
+       {
         title: sharedWeddingData.events.nikah.title,
         date: sharedWeddingData.events.nikah.date,
         time: sharedWeddingData.events.nikah.time,
-        description: "Your gracious presence is requested as the blessed ceremony begins.",
+        description: "Asr prayer will be approximately at 4.15 PM, followed by the Nikah ceremony",
       },
       {
         title: sharedWeddingData.events.dinner.title,
         date: sharedWeddingData.events.dinner.date,
         time: sharedWeddingData.events.dinner.time,
-        description: "An evening of warm company, family blessings, and shared celebration.",
+        description: "An evening of warm company, family blessings, with shared celebration and food.",
       },
       {
         title: sharedWeddingData.events.valima.title,
         date: sharedWeddingData.events.valima.date,
         time: sharedWeddingData.events.valima.time,
-        description: "We gather again to continue the celebration with gratitude and joy.",
+        description: "We gather again to continue celebrating the newly married couple with gratitude and joy.",
       },
     ),
     wordingVariant: "valima-only",
@@ -170,30 +170,34 @@ export const invitationVariants: InvitationVariant[] = [
       dressCode: true,
     },
     content: {
-      invitationLine: "Joyfully invite you to the Valima reception",
-      supportingDateLabel: "Monday, 16 November 2026",
-      heroEyebrow: "Reception Invitation",
+      invitationLine: "S/o Mr. Mohamed Viquar Bangi &\nMrs. Almas Viquar Nari",
+      supportingDateLabel: "Celebrations begin on Friday, 13 November 2026",
+      heroEyebrow: "D/o Mr Sohail Ahmed Siddiqui &\nMrs. Nahid Siddiqui",
       heroMessage:
-        "A refined invitation focused on one graceful reception in honor of Imaz and Zeba.",
+        "Invite you to share in their wedding celebrations and blessings across each cherished gathering.",
       invitationMessage:
-        "We are honored to welcome you to the Wedding ceremony of Imaz & Zeba as they begin their journey together in faith and love,\nwe thank you for being part of this blessed occasion \u2764",
-      openingTitle: "Bismillah",
+        "And among His signs is that He created for you spouses from among yourselves that you may find tranquility in them, and He placed between you affection and mercy. \n\n Surah Ar-Rum (30:21)",
+      openingTitle: "You are warmly invited",
       openingMessage:
-        "Please join us for a joyful Valima reception honoring Imaz and Zeba.",
-      openingPrompt: "Open invitation",
+        "A beautifully shared moment begins here. Open this invitation and join us in honoring a sacred union.",
+      openingPrompt: "Enter invitation",
       coupleIntro:
-        "Your invitation has been thoughtfully prepared for the Valima celebration, allowing the page to focus elegantly on the event you are invited to attend.",
+        "With grateful hearts and in the light of faith, Imaz and Zeba invite you to witness the beginning of their new life together and celebrate the joy that follows.",
       quote:
-        "May this celebration be filled with warmth, gratitude, and the company of those we hold dear.",
-      closingTitle: "Your presence will mean a great deal",
+        "And among His signs is that He created for you mates from among yourselves, that you may find tranquility in them.",
+      closingTitle: "We look forward to celebrating with you",
       closingMessage:
-        "We would be delighted to celebrate the Valima with you and your family.",
-      rsvpTitle: "Please confirm your attendance",
+        "Thank you for surrounding Imaz and Zeba with your prayers, love, and presence on these treasured days.",
+      rsvpTitle: "Kindly respond",
       rsvpMessage:
-        "Kindly let us know if you will be joining the Valima reception so we may welcome you well.",
+        "Please confirm your attendance for the events included in your invitation so we may prepare for your presence with care.",
       eventIntroductions: {
+        nikah:
+          "Join us for the Nikah ceremony as the wedding celebrations begin.",
+        dinner:
+          "Celebrate the evening with dinner, warm company, and family blessings.",
         valima:
-          "You are invited to the Valima reception for an evening of celebration and dua.",
+          "Gather with us again for the Valima reception and continued festivities.",
       },
     },
   }),
@@ -221,13 +225,13 @@ export const invitationVariants: InvitationVariant[] = [
         title: sharedWeddingData.events.nikah.title,
         date: sharedWeddingData.events.nikah.date,
         time: sharedWeddingData.events.nikah.time,
-        description: "The blessed beginning of the wedding celebrations.",
+        description: "Asr prayer will be approximately at 4.15 PM, followed by the Nikah ceremony",
       },
-     {
+      {
         title: sharedWeddingData.events.dinner.title,
         date: sharedWeddingData.events.dinner.date,
         time: sharedWeddingData.events.dinner.time,
-        description: "An evening of warm company, family blessings, and shared celebration.",
+        description: "An evening of warm company, family blessings, with shared celebration and food.",
       },
     ),
     wordingVariant: "ceremony-and-reception",
@@ -237,32 +241,34 @@ export const invitationVariants: InvitationVariant[] = [
       dressCode: true
     },
     content: {
-      invitationLine: "Invite you to witness and celebrate their union",
-      supportingDateLabel: "From Nikah to Valima, November 2026",
-      heroEyebrow: "Celebrate with us",
+      invitationLine: "S/o Mr. Mohamed Viquar Bangi &\nMrs. Almas Viquar Nari",
+      supportingDateLabel: "Celebrations begin on Friday, 13 November 2026",
+      heroEyebrow: "D/o Mr Sohail Ahmed Siddiqui &\nMrs. Nahid Siddiqui",
       heroMessage:
-        "A carefully tailored invitation presenting the Nikah and Valima in one graceful experience.",
+        "Invite you to share in their wedding celebrations and blessings across each cherished gathering.",
       invitationMessage:
-        "We are honored to welcome you to the Wedding ceremony of Imaz & Zeba as they begin their journey together in faith and love,\nwe thank you for being part of this blessed occasion \u2764",
-      openingTitle: "With gratitude to Allah",
+        "And among His signs is that He created for you spouses from among yourselves that you may find tranquility in them, and He placed between you affection and mercy. \n\n Surah Ar-Rum (30:21)",
+      openingTitle: "You are warmly invited",
       openingMessage:
-        "We invite you to witness our Nikah and celebrate our Valima.",
-      openingPrompt: "View invitation",
+        "A beautifully shared moment begins here. Open this invitation and join us in honoring a sacred union.",
+      openingPrompt: "Enter invitation",
       coupleIntro:
-        "This invitation carries alternate wording while preserving the same architecture, allowing the design to remain polished across different guest journeys.",
+        "With grateful hearts and in the light of faith, Imaz and Zeba invite you to witness the beginning of their new life together and celebrate the joy that follows.",
       quote:
-        "Two celebrations, one blessed beginning, and a shared prayer for a beautiful life ahead.",
-      closingTitle: "Please keep us in your prayers",
+        "And among His signs is that He created for you mates from among yourselves, that you may find tranquility in them.",
+      closingTitle: "We look forward to celebrating with you",
       closingMessage:
-        "We are grateful for your love, duas, and presence in these celebrations.",
-      rsvpTitle: "We would be honored by your reply",
+        "Thank you for surrounding Imaz and Zeba with your prayers, love, and presence on these treasured days.",
+      rsvpTitle: "Kindly respond",
       rsvpMessage:
-        "Please respond for the events shown below so arrangements may be made with care and clarity.",
+        "Please confirm your attendance for the events included in your invitation so we may prepare for your presence with care.",
       eventIntroductions: {
         nikah:
-          "The Nikah ceremony marks the beginning of this blessed new journey.",
+          "Join us for the Nikah ceremony as the wedding celebrations begin.",
+        dinner:
+          "Celebrate the evening with dinner, warm company, and family blessings.",
         valima:
-          "The Valima continues the celebration with loved ones gathered in joy.",
+          "Gather with us again for the Valima reception and continued festivities.",
       },
     },
   }),
@@ -349,13 +355,13 @@ export const invitationVariants: InvitationVariant[] = [
         title: sharedWeddingData.events.nikah.title,
         date: sharedWeddingData.events.nikah.date,
         time: sharedWeddingData.events.nikah.time,
-        description: "The blessed beginning of the wedding celebrations.",
+        description: "Asr prayer will be approximately at 4.15 PM, followed by the Nikah ceremony",
       },
-     {
+      {
         title: sharedWeddingData.events.dinner.title,
         date: sharedWeddingData.events.dinner.date,
         time: sharedWeddingData.events.dinner.time,
-        description: "An evening of warm company, family blessings, and shared celebration.",
+        description: "An evening of warm company, family blessings, with shared celebration and food.",
       },
     ),
     wordingVariant: "ceremony-and-reception",
@@ -364,33 +370,35 @@ export const invitationVariants: InvitationVariant[] = [
       gallery: true,
       dressCode: true
     },
-    content: {
-      invitationLine: "Invite you to witness and celebrate their union",
-      supportingDateLabel: "From Nikah to Valima, November 2026",
-      heroEyebrow: "Celebrate with us",
+     content: {
+      invitationLine: "S/o Mr. Mohamed Viquar Bangi &\nMrs. Almas Viquar Nari",
+      supportingDateLabel: "Celebrations begin on Friday, 13 November 2026",
+      heroEyebrow: "D/o Mr Sohail Ahmed Siddiqui &\nMrs. Nahid Siddiqui",
       heroMessage:
-        "A carefully tailored invitation presenting the Nikah and Valima in one graceful experience.",
+        "Invite you to share in their wedding celebrations and blessings across each cherished gathering.",
       invitationMessage:
-        "We are honored to welcome you to the Wedding ceremony of Imaz & Zeba as they begin their journey together in faith and love,\nwe thank you for being part of this blessed occasion \u2764",
-      openingTitle: "With gratitude to Allah",
+        "And among His signs is that He created for you spouses from among yourselves that you may find tranquility in them, and He placed between you affection and mercy. \n\n Surah Ar-Rum (30:21)",
+      openingTitle: "You are warmly invited",
       openingMessage:
-        "We invite you to witness our Nikah and celebrate our Valima.",
-      openingPrompt: "View invitation",
+        "A beautifully shared moment begins here. Open this invitation and join us in honoring a sacred union.",
+      openingPrompt: "Enter invitation",
       coupleIntro:
-        "This invitation carries alternate wording while preserving the same architecture, allowing the design to remain polished across different guest journeys.",
+        "With grateful hearts and in the light of faith, Imaz and Zeba invite you to witness the beginning of their new life together and celebrate the joy that follows.",
       quote:
-        "Two celebrations, one blessed beginning, and a shared prayer for a beautiful life ahead.",
-      closingTitle: "Please keep us in your prayers",
+        "And among His signs is that He created for you mates from among yourselves, that you may find tranquility in them.",
+      closingTitle: "We look forward to celebrating with you",
       closingMessage:
-        "We are grateful for your love, duas, and presence in these celebrations.",
-      rsvpTitle: "We would be honored by your reply",
+        "Thank you for surrounding Imaz and Zeba with your prayers, love, and presence on these treasured days.",
+      rsvpTitle: "Kindly respond",
       rsvpMessage:
-        "Please respond for the events shown below so arrangements may be made with care and clarity.",
+        "Please confirm your attendance for the events included in your invitation so we may prepare for your presence with care.",
       eventIntroductions: {
         nikah:
-          "The Nikah ceremony marks the beginning of this blessed new journey.",
+          "Join us for the Nikah ceremony as the wedding celebrations begin.",
+        dinner:
+          "Celebrate the evening with dinner, warm company, and family blessings.",
         valima:
-          "The Valima continues the celebration with loved ones gathered in joy.",
+          "Gather with us again for the Valima reception and continued festivities.",
       },
     },
   }),
