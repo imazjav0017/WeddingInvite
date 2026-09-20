@@ -96,7 +96,7 @@ export const invitationVariants: InvitationVariant[] = [
     content: {
       invitationLine: "S/o Mr & Mrs. Mohamed Viquar Bangi",
       supportingDateLabel: "Celebrations begin on Friday, 13 November 2026",
-      heroEyebrow: "D/o Mr Sohail Ahmed Siddiqui &\nMrs. Nahid Siddiqui",
+      heroEyebrow: "D/o Mr & Mrs Sohail Ahmed Siddiqui",
       heroMessage:
         "Invite you to share in their wedding celebrations and blessings across each cherished gathering.",
       invitationMessage:
@@ -172,7 +172,7 @@ export const invitationVariants: InvitationVariant[] = [
     content: {
       invitationLine: "S/o Mr &Mrs. Mohamed Viquar Bangi",
       supportingDateLabel: "Celebrations begin on Friday, 13 November 2026",
-      heroEyebrow: "D/o Mr Sohail Ahmed Siddiqui &\nMrs. Nahid Siddiqui",
+      heroEyebrow: "D/o Mr & Mrs Sohail Ahmed Siddiqui",
       heroMessage:
         "Invite you to share in their wedding celebrations and blessings across each cherished gathering.",
       invitationMessage:
@@ -243,7 +243,7 @@ export const invitationVariants: InvitationVariant[] = [
     content: {
       invitationLine: "S/o Mr & Mrs. Mohamed Viquar Bangi",
       supportingDateLabel: "Celebrations begin on Friday, 13 November 2026",
-      heroEyebrow: "D/o Mr Sohail Ahmed Siddiqui &\nMrs. Nahid Siddiqui",
+      heroEyebrow: "D/o Mr & Mrs Sohail Ahmed Siddiqui",
       heroMessage:
         "Invite you to share in their wedding celebrations and blessings across each cherished gathering.",
       invitationMessage:
@@ -373,7 +373,7 @@ export const invitationVariants: InvitationVariant[] = [
      content: {
       invitationLine: "S/o Mr & Mrs. Mohamed Viquar Bangi",
       supportingDateLabel: "Celebrations begin on Friday, 13 November 2026",
-      heroEyebrow: "D/o Mr Sohail Ahmed Siddiqui &\nMrs. Nahid Siddiqui",
+      heroEyebrow: "D/o Mr & Mrs Sohail Ahmed Siddiqui",
       heroMessage:
         "Invite you to share in their wedding celebrations and blessings across each cherished gathering.",
       invitationMessage:

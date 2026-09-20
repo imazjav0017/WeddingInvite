@@ -227,13 +227,6 @@ export function EnvelopeVideoIntro({
         initial={{ opacity: 1 }}
         transition={{ duration: prefersReducedMotion ? 0.01 : 0.2 }}
       >
-        <button
-          className="absolute right-4 top-4 z-20 inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 bg-black/15 px-4 text-[10px] uppercase tracking-[0.26em] text-white/85 backdrop-blur-sm"
-          onClick={handleSkip}
-          type="button"
-        >
-          Skip intro
-        </button>
 
         <div
           aria-label="Tap to play invitation intro"
