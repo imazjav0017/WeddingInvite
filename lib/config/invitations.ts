@@ -51,7 +51,7 @@ export const invitationVariants: InvitationVariant[] = [
   baseVariant({
     id: "k7Xm2Q",
     label: "Full Celebration",
-    seoDescription: "Nikah, dinner, and valima invitation for Imaz and Zeba.",
+    seoDescription: "You are invited to the wedding ceremony of Zeba & Imaz",
     events: ["nikah", "dinner", "valima"],
     preWeddingEvents: sharedWeddingData.preWeddingEvents,
     valimaInvitation: {
@@ -128,7 +128,7 @@ export const invitationVariants: InvitationVariant[] = [
   baseVariant({
     id: "vN4p8R",
     label: "Nikkah and Valima Only",
-    seoDescription: "Valima-only invitation variant for Imaz and Zeba.",
+    seoDescription: "You are invited to the wedding ceremony of Zeba & Imaz",
     events: ["nikah", "dinner", "valima"],
     preWeddingEvents: [],
     valimaInvitation: {
@@ -205,7 +205,7 @@ export const invitationVariants: InvitationVariant[] = [
     id: "3zK9Wa",
     label: "Nikah and haldi Only",
     seoDescription:
-      "Nikah and Valima invitation variant with alternative wording for Imaz and Zeba.",
+      "You are invited to the wedding ceremony of Zeba & Imaz",
     events: ["nikah","dinner"],
     preWeddingEvents: sharedWeddingData.preWeddingEvents,
     valimaInvitation: {
@@ -335,7 +335,7 @@ export const invitationVariants: InvitationVariant[] = [
     id: "M8x2Ld",
     label: "Nikah Only",
     seoDescription:
-      "Nikah and Valima invitation variant with alternative wording for Imaz and Zeba.",
+      "You are invited to the wedding ceremony of Zeba & Imaz",
     events: ["nikah","dinner"],
     preWeddingEvents: [],
     valimaInvitation: {

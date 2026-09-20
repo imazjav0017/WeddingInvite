@@ -26,11 +26,7 @@ export const sharedWeddingData: SharedWeddingData = {
       title: "Haldi",
       date: "11 November 2026, 7.30 PM onwards",
       venue:"Wadar Bhavan, Palm Beach RD, Sector 16, Sanpada, Navi Mumbai, 400705"
-    },
-     {
-      title: "Mehendi",
-      date: "12 November 2026, 11 AM onwards ",
-    },
+    }
   ],
   events: {
     nikah: {
