@@ -49,7 +49,7 @@ const timelineFromEvents = (...items: TimelineItem[]) => items;
 
 export const invitationVariants: InvitationVariant[] = [
   baseVariant({
-    id: "1",
+    id: "k7Xm2Q",
     label: "Full Celebration",
     seoDescription: "Nikah, dinner, and valima invitation for Imaz and Zeba.",
     events: ["nikah", "dinner", "valima"],
@@ -71,7 +71,7 @@ export const invitationVariants: InvitationVariant[] = [
         title: sharedWeddingData.events.nikah.title,
         date: sharedWeddingData.events.nikah.date,
         time: sharedWeddingData.events.nikah.time,
-        description: "Asr prayer will be approximately at 4.15 PM, followed by the Nikah ceremony",
+        description: "Asr prayer will be approximately at 4:00 to 4:15 PM, followed by the Nikah ceremony",
       },
       {
         title: sharedWeddingData.events.dinner.title,
@@ -94,7 +94,7 @@ export const invitationVariants: InvitationVariant[] = [
       rsvp: true,
     },
     content: {
-      invitationLine: "S/o Mr. Mohamed Viquar Bangi &\nMrs. Almas Viquar Nari",
+      invitationLine: "S/o Mr & Mrs. Mohamed Viquar Bangi",
       supportingDateLabel: "Celebrations begin on Friday, 13 November 2026",
       heroEyebrow: "D/o Mr Sohail Ahmed Siddiqui &\nMrs. Nahid Siddiqui",
       heroMessage:
@@ -126,7 +126,7 @@ export const invitationVariants: InvitationVariant[] = [
     },
   }),
   baseVariant({
-    id: "2",
+    id: "vN4p8R",
     label: "Nikkah and Valima Only",
     seoDescription: "Valima-only invitation variant for Imaz and Zeba.",
     events: ["nikah", "dinner", "valima"],
@@ -148,7 +148,7 @@ export const invitationVariants: InvitationVariant[] = [
         title: sharedWeddingData.events.nikah.title,
         date: sharedWeddingData.events.nikah.date,
         time: sharedWeddingData.events.nikah.time,
-        description: "Asr prayer will be approximately at 4.15 PM, followed by the Nikah ceremony",
+        description: "Asr prayer will be approximately at 4:00 to 4:15 PM, followed by the Nikah ceremony",
       },
       {
         title: sharedWeddingData.events.dinner.title,
@@ -170,7 +170,7 @@ export const invitationVariants: InvitationVariant[] = [
       dressCode: true,
     },
     content: {
-      invitationLine: "S/o Mr. Mohamed Viquar Bangi &\nMrs. Almas Viquar Nari",
+      invitationLine: "S/o Mr &Mrs. Mohamed Viquar Bangi",
       supportingDateLabel: "Celebrations begin on Friday, 13 November 2026",
       heroEyebrow: "D/o Mr Sohail Ahmed Siddiqui &\nMrs. Nahid Siddiqui",
       heroMessage:
@@ -202,7 +202,7 @@ export const invitationVariants: InvitationVariant[] = [
     },
   }),
   baseVariant({
-    id: "3",
+    id: "3zK9Wa",
     label: "Nikah and haldi Only",
     seoDescription:
       "Nikah and Valima invitation variant with alternative wording for Imaz and Zeba.",
@@ -225,7 +225,7 @@ export const invitationVariants: InvitationVariant[] = [
         title: sharedWeddingData.events.nikah.title,
         date: sharedWeddingData.events.nikah.date,
         time: sharedWeddingData.events.nikah.time,
-        description: "Asr prayer will be approximately at 4.15 PM, followed by the Nikah ceremony",
+        description: "Asr prayer will be approximately at 4:00 to 4:15 PM, followed by the Nikah ceremony",
       },
       {
         title: sharedWeddingData.events.dinner.title,
@@ -241,7 +241,7 @@ export const invitationVariants: InvitationVariant[] = [
       dressCode: true
     },
     content: {
-      invitationLine: "S/o Mr. Mohamed Viquar Bangi &\nMrs. Almas Viquar Nari",
+      invitationLine: "S/o Mr & Mrs. Mohamed Viquar Bangi",
       supportingDateLabel: "Celebrations begin on Friday, 13 November 2026",
       heroEyebrow: "D/o Mr Sohail Ahmed Siddiqui &\nMrs. Nahid Siddiqui",
       heroMessage:
@@ -273,7 +273,7 @@ export const invitationVariants: InvitationVariant[] = [
     },
   }),
   baseVariant({
-    id: "4",
+    id: "q6Tn5Y",
     label: "Minimal Starter",
     seoDescription:
       "Minimal invitation variant reserved for future customization scenarios.",
@@ -332,7 +332,7 @@ export const invitationVariants: InvitationVariant[] = [
     },
   }),
    baseVariant({
-    id: "5",
+    id: "M8x2Ld",
     label: "Nikah Only",
     seoDescription:
       "Nikah and Valima invitation variant with alternative wording for Imaz and Zeba.",
@@ -355,7 +355,7 @@ export const invitationVariants: InvitationVariant[] = [
         title: sharedWeddingData.events.nikah.title,
         date: sharedWeddingData.events.nikah.date,
         time: sharedWeddingData.events.nikah.time,
-        description: "Asr prayer will be approximately at 4.15 PM, followed by the Nikah ceremony",
+        description: "Asr prayer will be approximately at 4:00 to 4:15 PM, followed by the Nikah ceremony",
       },
       {
         title: sharedWeddingData.events.dinner.title,
@@ -371,7 +371,7 @@ export const invitationVariants: InvitationVariant[] = [
       dressCode: true
     },
      content: {
-      invitationLine: "S/o Mr. Mohamed Viquar Bangi &\nMrs. Almas Viquar Nari",
+      invitationLine: "S/o Mr & Mrs. Mohamed Viquar Bangi",
       supportingDateLabel: "Celebrations begin on Friday, 13 November 2026",
       heroEyebrow: "D/o Mr Sohail Ahmed Siddiqui &\nMrs. Nahid Siddiqui",
       heroMessage:

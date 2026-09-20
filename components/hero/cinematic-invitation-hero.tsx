@@ -137,7 +137,7 @@ export function CinematicInvitationHero({
             initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
             transition={{
               duration: prefersReducedMotion ? 0.2 : 0.65,
-              delay: prefersReducedMotion ? 0.08 : 0.38,
+              delay: prefersReducedMotion ? 0.08 : 0.45,
               ease: EASE,
             }}
           >
