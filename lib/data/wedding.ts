@@ -23,7 +23,7 @@ export const sharedWeddingData: SharedWeddingData = {
   },
   preWeddingEvents: [
     {
-      title: "Haldi",
+      title: "Haldi & Mehendi",
       date: "11 November 2026, 7.30 PM onwards",
       venue:"Wadar Bhavan, Palm Beach RD, Sector 16, Sanpada, Navi Mumbai, 400705"
     }
